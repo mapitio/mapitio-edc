@@ -1,0 +1,7 @@
+include AUTHORS CHANGES LICENSE VERSION
+include MANIFEST.in
+include *.rst
+include *.txt
+recursive-include mapitio/templates *
+recursive-include mapitio/static *
+recursive-include label_templates *
