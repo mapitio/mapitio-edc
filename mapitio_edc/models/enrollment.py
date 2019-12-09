@@ -1,6 +1,9 @@
 from django.core.validators import (
-    MinValueValidator, MaxValueValidator,
-    RegexValidator, MinLengthValidator, MaxLengthValidator,
+    MinValueValidator,
+    MaxValueValidator,
+    RegexValidator,
+    MinLengthValidator,
+    MaxLengthValidator,
 )
 from dateutil.relativedelta import relativedelta
 from django.db import models
@@ -14,9 +17,7 @@ from edc_sites.models import CurrentSiteManager
 from edc_utils.date import get_utcnow
 
 
-class Enrollment(UniqueSubjectIdentifierModelMixin,
-                 IdentityFieldsMixin,
-                 BaseUuidModel):
+class Enrollment(UniqueSubjectIdentifierModelMixin, IdentityFieldsMixin, BaseUuidModel):
 
     report_datetime = models.DateTimeField(
         verbose_name="Report Date and Time",
@@ -34,8 +35,7 @@ class Enrollment(UniqueSubjectIdentifierModelMixin,
         blank=False,
     )
 
-    dob = models.DateField(verbose_name="Date of birth",
-                           null=True, blank=False)
+    dob = models.DateField(verbose_name="Date of birth", null=True, blank=False)
 
     is_dob_estimated = IsDateEstimatedField(
         verbose_name="Is date of birth estimated?", null=True, blank=False
@@ -52,8 +52,7 @@ class Enrollment(UniqueSubjectIdentifierModelMixin,
     hospital_identifier = EncryptedCharField(unique=True, blank=False)
 
     clinic_registration_datetime = models.DateTimeField(
-        verbose_name="Date patient enrolled at the clinic",
-        default=get_utcnow,
+        verbose_name="Date patient enrolled at the clinic", default=get_utcnow,
     )
 
     on_site = CurrentSiteManager()
@@ -65,8 +64,7 @@ class Enrollment(UniqueSubjectIdentifierModelMixin,
     def save(self, *args, **kwargs):
         if self.dob and self.report_datetime:
             self.age_in_years = relativedelta(
-                self.report_datetime,
-                relativedelta(years=self.age_in_years)
+                self.report_datetime, relativedelta(years=self.age_in_years)
             ).years
         else:
             self.age_in_years = None

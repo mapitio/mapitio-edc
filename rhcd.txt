@@ -1,0 +1,171 @@
+Enrolment/Patient start at the clinic
+
+Patient details
+1  Date of form completion  00 / 00 / 0000
+
+2  Patient Hospital ID  
+  Patients initials  000
+
+Last         First      Middle
+
+3  Date of birth  00 / 00 / 0000
+
+4  Age  00 Years
+
+5  Sex  0 
+
+6  Date patient enrolled at the clinic  00 / 00 / 0000
+
+
+HIV History
+
+7  When was the diagnosis made?  00 / 00 / 0000
+
+8  Date antiretroviral therapy commenced  00 / 00 / 0000
+
+9  Current ARV regimen
+ 
+Previous ARV regimens
+10  Previous regimen 1    
+
+
+Date commenced
+
+Date ended
+
+Reason for switching
+
+
+ 11  Previous regimen 2
+
+  00 
+Date commenced
+00 / 00 / 0000
+
+Date ended
+00 / 00 / 0000
+
+Reason for switching
+
+
+Non-communicable disease history
+12  Did the patient have Diabetes when they started attending the clinic?
+  0 
+
+13  If YES, when was the diagnosis of diabetes made?  00 / 00 / 0000
+
+14  List of diabetes treatment when patient started attending the clinic  
+
+15  Did the patient have Hypertension when they started attending the clinic?
+  0 
+
+16  If YES, when was the diagnosis of hypertension made?  00 / 00 / 0000
+
+17  List of hypertension treatment when patient started attending the clinic  
+
+
+Baseline data (Recorded when patient first started attending the clinic)
+
+18  Height  000 centimeters
+
+19  Weight  000 Kgs
+
+20  Waist  000 centimeters
+
+21  Blood pressure  000 Systolic (mmHg)
+
+000 Diastolic (mmHg)
+
+22  Blood glucose
+  00.0mmol/L OR 000 mg/dL
+
+23  Was this a fasting or random blood glucose?  0
+
+Blood results
+24  Total cholesterol  00.0 mmol/L
+
+25  LDL  00.0 mmol/L
+
+26  HDL  00.0 mmol/L
+
+27  Triglycerides  00.0 mmol/L
+
+28  Serum urea levels (mg/dl)  00.0mg/dl or 00.0mmol/L
+
+29  Serum creatinine levels (mg/dl)  0.0mg/dl or 000.0 µmol/L
+
+30  CD4 count  0000cells/mm3 
+
+31  Date of CD4 count  00 / 00 / 0000
+
+32  Viral load  000000copies/ml
+
+33  Date of Viral load  00 / 00 / 0000
+
+Investigations
+34  Chest X-ray
+Choose from findings listed (you can enter up to 2 findings) 
+
+
+  0 
+
+0
+
+35  ECG findings
+
+  0 
+
+
+
+36  ECHO findings
+
+  0 
+
+
+
+
+ 
+HIV retrospective cohort. Follow up CRF
+Patient details
+1  Date of form completion  00 / 00 / 0000
+
+2  Patient Hospital ID  
+  Patients initials  000
+Last         First      Middle
+
+3  Date patient last seen at the clinic  00 / 00 / 0000
+
+4  Is the patient alive and in care?  0 
+
+5  Since the patient started at this clinic, have they developed diabetes?
+  0 
+
+6  If YES, when was the diagnosis of diabetes made?  00 / 00 / 0000
+
+7  List of diabetes treatment.  
+
+8  Since the patient started at this clinic, have they developed hypertension?  0 
+
+9  If YES, when was the diagnosis of hypertension made?  00 / 00 / 0000
+
+10  List of hypertension treatment.  
+
+If the patient has developed either hypertension or diabetes, have any of the following complications occurred?
+11  Stroke  0 
+If yes, date of diagnosis
+00 / 00 / 0000
+
+12  Diabetic foot  0 
+If yes, date of diagnosis
+00 / 00 / 0000
+
+13  Chronic heart failure  0 
+If yes, date of diagnosis
+00 / 00 / 0000
+
+14  Chronic renal failure  0 
+If yes, date of diagnosis
+00 / 00 / 0000
+
+
+
