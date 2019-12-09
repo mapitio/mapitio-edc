@@ -1,0 +1,1 @@
+LEFT_VENTRICULAR_HYPERTROPHY = "left_ventricular_hypertrophy"

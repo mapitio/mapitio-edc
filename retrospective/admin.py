@@ -5,4 +5,3 @@ from .models import EnrolmentPatientStartAtTheClinic, HIVRetrospectiveCohortFoll
 
 admin.site.register(EnrolmentPatientStartAtTheClinic)
 admin.site.register(HIVRetrospectiveCohortFollowUpCRF)
-
