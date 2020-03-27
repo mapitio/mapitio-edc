@@ -1,11 +1,23 @@
 #!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
+"""Django's command-line utility for administrative tasks.
+
+For LIVE or UAT deployments, set DJANGO_SETTINGS_MODULE in the shell environment.
+
+For example, in .bashrc, add
+
+    # >>> EDC >>>
+    conda deactivate
+    export DJANGO_SETTINGS_MODULE=mapitio_edc.settings.live
+    conda activate edc
+    # <<< EDC <<<
+
+"""
 import os
 import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mapitio_edc.settings')
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mapitio_edc.settings.debug")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -17,5 +29,5 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
