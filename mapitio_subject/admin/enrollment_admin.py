@@ -14,21 +14,21 @@ class EnrollmentAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistor
     form = EnrollmentForm
 
     fieldsets = (
-        (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            "Blood Results",
+            "Enrollment",
             {
                 "fields": (
-                    "height",
-                    "weight",
-                    "waist_circumference",
-                    "sys_blood_pressure",
-                    "dia_blood_pressure",
-                    "glucose",
-                    "glucose_units",
-                    "glucose_fasting",
+                    "report_datetime",
+                    "initials",
+                    "dob",
+                    "is_dob_estimated",
+                    "gender",
+                    "identity",
+                    "identity_type",
+                    "confirm_identity",
+                    "clinic_registration_datetime",
                     "crf_status",
-                    "comment",
+                    "comments",
                 ),
             },
         ),
@@ -36,7 +36,7 @@ class EnrollmentAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistor
     )
 
     radio_fields = {
-        "glucose_units": admin.VERTICAL,
-        "glucose_fasting": admin.VERTICAL,
-        "crf_status": admin.VERTICAL,
+        "identity_type": admin.VERTICAL,
+        "is_dob_estimated": admin.VERTICAL,
+        "gender": admin.VERTICAL,
     }

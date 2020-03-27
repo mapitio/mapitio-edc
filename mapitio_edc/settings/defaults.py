@@ -112,17 +112,19 @@ INSTALLED_APPS = [
     "edc_visit_tracking.apps.AppConfig",
     "edc_facility.apps.AppConfig",
     "mapitio_lists.apps.AppConfig",
-    # "mapitio_dashboard.apps.AppConfig",
-    # "mapitio_labs.apps.AppConfig",
-    # "mapitio_metadata_rules.apps.AppConfig",
+    "mapitio_dashboard.apps.AppConfig",
+    "mapitio_labs.apps.AppConfig",
+    "mapitio_metadata_rules.apps.AppConfig",
     # "mapitio_reference.apps.AppConfig",
+    "mapitio_screening.apps.AppConfig",
     "mapitio_subject.apps.AppConfig",
+    "mapitio_consent.apps.AppConfig",
     # "mapitio_form_validators.apps.AppConfig",
-    # "mapitio_visit_schedule.apps.AppConfig",
+    "mapitio_visit_schedule.apps.AppConfig",
     "mapitio_ae.apps.AppConfig",
-    # "mapitio_auth.apps.AppConfig",
-    # "mapitio_prn.apps.AppConfig",
-    # "mapitio_export.apps.AppConfig",
+    "mapitio_auth.apps.AppConfig",
+    "mapitio_prn.apps.AppConfig",
+    "mapitio_export.apps.AppConfig",
     "mapitio_edc.apps.AppConfig",
 ]
 
@@ -373,6 +375,9 @@ DATA_DICTIONARY_APP_LABELS = [
     "mapitio_ae",
     "edc_appointment",
 ]
+
+# edc_facility
+EDC_FACILITY_USE_DEFAULTS = True
 
 # edc_randomization
 EDC_RANDOMIZATION_LIST_PATH = env.str("EDC_RANDOMIZATION_LIST_PATH")

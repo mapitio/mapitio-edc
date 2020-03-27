@@ -5,5 +5,5 @@ from .follow_up import FollowUp
 from .hiv_history import HivHistory
 from .investigations import Investigations
 from .ncd_history import NcdHistory
-from .subject_consent import SubjectConsent
 from .subject_visit import SubjectVisit
+from .subject_requisition import SubjectRequisition

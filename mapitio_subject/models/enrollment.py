@@ -15,6 +15,7 @@ from edc_model.models import BaseUuidModel, HistoricalRecords
 from edc_model_fields.fields import IsDateEstimatedField
 from edc_sites.models import CurrentSiteManager, SiteModelMixin
 from edc_utils.date import get_utcnow
+from mapitio_subject.choices import CRF_STATUS
 
 
 class Enrollment(
@@ -59,6 +60,12 @@ class Enrollment(
     clinic_registration_datetime = models.DateTimeField(
         verbose_name="Date patient enrolled at the clinic", default=get_utcnow,
     )
+
+    crf_status = models.CharField(
+        verbose_name="CRF status", max_length=25, choices=CRF_STATUS
+    )
+
+    comments = models.TextField(null=True, blank=True)
 
     on_site = CurrentSiteManager()
 

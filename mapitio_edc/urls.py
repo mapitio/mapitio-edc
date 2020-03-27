@@ -22,13 +22,13 @@ from edc_randomization.admin_site import edc_randomization_admin
 from edc_reference.admin_site import edc_reference_admin
 from edc_registration.admin_site import edc_registration_admin
 from edc_visit_schedule.admin_site import edc_visit_schedule_admin
-from meta_ae.admin_site import meta_ae_admin
-from meta_consent.admin_site import meta_consent_admin
-from meta_export.admin_site import meta_export_admin
-from meta_lists.admin_site import meta_lists_admin
-from meta_prn.admin_site import meta_prn_admin
-from meta_screening.admin_site import meta_screening_admin
-from meta_subject.admin_site import meta_subject_admin
+from mapitio_ae.admin_site import mapitio_ae_admin
+from mapitio_consent.admin_site import mapitio_consent_admin
+from mapitio_export.admin_site import mapitio_export_admin
+from mapitio_lists.admin_site import mapitio_lists_admin
+from mapitio_prn.admin_site import mapitio_prn_admin
+from mapitio_screening.admin_site import mapitio_screening_admin
+from mapitio_subject.admin_site import mapitio_subject_admin
 
 from .views import HomeView
 
@@ -53,13 +53,13 @@ urlpatterns = [
     path("admin/", edc_appointment_admin.urls),
     path("admin/", edc_adverse_event_admin.urls),
     path("admin/", edc_randomization_admin.urls),
-    path("admin/", meta_consent_admin.urls),
-    path("admin/", meta_subject_admin.urls),
-    path("admin/", meta_ae_admin.urls),
-    path("admin/", meta_lists_admin.urls),
-    path("admin/", meta_export_admin.urls),
-    path("admin/", meta_prn_admin.urls),
-    path("admin/", meta_screening_admin.urls),
+    path("admin/", mapitio_consent_admin.urls),
+    path("admin/", mapitio_subject_admin.urls),
+    path("admin/", mapitio_ae_admin.urls),
+    path("admin/", mapitio_lists_admin.urls),
+    path("admin/", mapitio_export_admin.urls),
+    path("admin/", mapitio_prn_admin.urls),
+    path("admin/", mapitio_screening_admin.urls),
     path("admin/", edc_lab_admin.urls),
     path("admin/", edc_data_manager_admin.urls),
     path("admin/", edc_export_admin.urls),
@@ -76,18 +76,18 @@ urlpatterns = [
     path("admin/edc_visit_schedule/", edc_visit_schedule_admin.urls),
     path("administration/", AdministrationView.as_view(), name="administration_url"),
     path(
-        "admin/meta_subject/",
-        RedirectView.as_view(url="admin/meta_subject/"),
+        "admin/mapitio_subject/",
+        RedirectView.as_view(url="admin/mapitio_subject/"),
         name="subject_models_url",
     ),
-    path("meta_consent/", include("meta_consent.urls")),
-    path("meta_subject/", include("meta_subject.urls")),
-    path("meta_ae/", include("meta_ae.urls")),
-    path("meta_export/", include("meta_export.urls")),
-    path("meta_lists/", include("meta_lists.urls")),
-    path("meta_prn/", include("meta_prn.urls")),
-    path("meta_screening/", include("meta_screening.urls")),
-    path("subject/", include("meta_dashboard.urls")),
+    path("mapitio_consent/", include("mapitio_consent.urls")),
+    path("mapitio_subject/", include("mapitio_subject.urls")),
+    path("mapitio_ae/", include("mapitio_ae.urls")),
+    path("mapitio_export/", include("mapitio_export.urls")),
+    path("mapitio_lists/", include("mapitio_lists.urls")),
+    path("mapitio_prn/", include("mapitio_prn.urls")),
+    path("mapitio_screening/", include("mapitio_screening.urls")),
+    path("subject/", include("mapitio_dashboard.urls")),
     path("edc_adverse_event/", include("edc_adverse_event.urls")),
     path("edc_appointment/", include("edc_appointment.urls")),
     path("edc_action_item/", include("edc_action_item.urls")),

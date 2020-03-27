@@ -12,7 +12,7 @@ class Investigations(CrfModelMixin, BaseUuidModel):
 
     chest_xray_finding_one = models.CharField(
         verbose_name="Chest x-ray finding (first)",
-        max_length=25,
+        max_length=50,
         choices=CHEST_XRAY_CHOICES,
         help_text="Choose from findings listed (you can enter a 2nd findings below",
         null=True,
@@ -21,7 +21,7 @@ class Investigations(CrfModelMixin, BaseUuidModel):
 
     chest_xray_finding_two = models.CharField(
         verbose_name="Chest x-ray finding (second)",
-        max_length=25,
+        max_length=50,
         choices=CHEST_XRAY_CHOICES,
         help_text="Choose from findings listed",
         null=True,
@@ -29,12 +29,12 @@ class Investigations(CrfModelMixin, BaseUuidModel):
     )
 
     ecg = models.CharField(
-        verbose_name="ECG findings", max_length=25, choices=ECG, null=True, blank=True,
+        verbose_name="ECG findings", max_length=50, choices=ECG, null=True, blank=True,
     )
 
     echo = models.CharField(
         verbose_name="ECHO findings",
-        max_length=25,
+        max_length=50,
         choices=ECHO,
         null=True,
         blank=True,

@@ -17,10 +17,32 @@ class BloodResultsAdmin(
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
-        ("Blood Results", {"fields": ("crf_status", "comment",),},),
+        (
+            "Blood Results",
+            {
+                "fields": (
+                    "total_cholesterol",
+                    "ldl",
+                    "hdl",
+                    "triglycerides",
+                    "serum_urea",
+                    "serum_urea_units",
+                    "serum_creatinine",
+                    "serum_creatinine_units",
+                    "cd4",
+                    "cd4_date",
+                    "vl",
+                    "vl_date",
+                    "crf_status",
+                    "comments",
+                ),
+            },
+        ),
         audit_fieldset_tuple,
     )
 
     radio_fields = {
+        "serum_urea_units": admin.VERTICAL,
+        "serum_creatinine_units": admin.VERTICAL,
         "crf_status": admin.VERTICAL,
     }

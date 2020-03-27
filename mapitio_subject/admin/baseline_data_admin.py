@@ -31,7 +31,7 @@ class BaselineDataAdmin(
                     "glucose_units",
                     "glucose_fasting",
                     "crf_status",
-                    "comment",
+                    "comments",
                 ),
             },
         ),
