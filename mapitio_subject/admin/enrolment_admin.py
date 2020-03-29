@@ -1,17 +1,16 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
-from edc_form_label.form_label_modeladmin_mixin import FormLabelModelAdminMixin
 from edc_model_admin import SimpleHistoryAdmin
+from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 
 from ..admin_site import mapitio_subject_admin
-from ..forms import EnrollmentForm
-from ..models import Enrollment
-from .modeladmin import CrfModelAdminMixin
+from ..forms import EnrolmentForm
+from ..models import Enrolment
 
 
-@admin.register(Enrollment, site=mapitio_subject_admin)
-class EnrollmentAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryAdmin):
-    form = EnrollmentForm
+@admin.register(Enrolment, site=mapitio_subject_admin)
+class EnrolmentAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
+    form = EnrolmentForm
 
     fieldsets = (
         (
@@ -39,4 +38,5 @@ class EnrollmentAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistor
         "identity_type": admin.VERTICAL,
         "is_dob_estimated": admin.VERTICAL,
         "gender": admin.VERTICAL,
+        "crf_status": admin.VERTICAL,
     }

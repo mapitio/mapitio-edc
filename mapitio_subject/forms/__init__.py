@@ -1,6 +1,6 @@
 from .baseline_data_form import BaselineDataForm
 from .blood_results_form import BloodResultsForm
-from .enrollment_form import EnrollmentForm
+from .enrolment_form import EnrolmentForm
 from .follow_up_form import FollowUpForm
 from .hiv_history_form import HivHistoryForm
 from .investigations_form import InvestigationsForm

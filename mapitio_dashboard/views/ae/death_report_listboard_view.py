@@ -5,8 +5,8 @@ from reportlab.lib.units import cm
 
 class CustomDeathReport(DeathReport):
     logo_data = {
-        "app_label": "inte_edc",
-        "filename": "inte_logo.png",
+        "app_label": "mapitio_edc",
+        "filename": "mapitio_logo.png",
         "first_page": (4.0 * cm, 0.83 * cm),
         "later_pages": (3.0 * cm, 0.625 * cm),
     }

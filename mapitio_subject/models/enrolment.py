@@ -18,7 +18,7 @@ from edc_utils.date import get_utcnow
 from mapitio_subject.choices import CRF_STATUS
 
 
-class Enrollment(
+class Enrolment(
     UniqueSubjectIdentifierModelMixin,
     IdentityFieldsMixin,
     SiteModelMixin,
@@ -41,11 +41,9 @@ class Enrollment(
         blank=False,
     )
 
-    dob = models.DateField(verbose_name="Date of birth", null=True, blank=False)
+    dob = models.DateField(verbose_name="Date of birth")
 
-    is_dob_estimated = IsDateEstimatedField(
-        verbose_name="Is date of birth estimated?", null=True, blank=False
-    )
+    is_dob_estimated = IsDateEstimatedField(verbose_name="Is date of birth estimated?")
 
     gender = models.CharField(choices=GENDER, max_length=10)
 
@@ -83,5 +81,5 @@ class Enrollment(
         super().save(*args, **kwargs)
 
     class Meta:
-        verbose_name = "Enrollment"
-        verbose_name_plural = "Enrollment"
+        verbose_name = "Enrolment"
+        verbose_name_plural = "Enrolment"

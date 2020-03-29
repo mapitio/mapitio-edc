@@ -11,15 +11,15 @@ class BaselineData(CrfModelMixin, edc_models.BaseUuidModel):
 
     subject_visit = models.ForeignKey(SubjectVisit, on_delete=models.PROTECT)
 
-    height = edc_models.HeightField()
+    height = edc_models.HeightField(null=True, blank=True)
 
-    weight = edc_models.WeightField(null=True, blank=True,)
+    weight = edc_models.WeightField(null=True, blank=True)
 
-    waist_circumference = edc_models.WaistCircumferenceField()
+    waist_circumference = edc_models.WaistCircumferenceField(null=True, blank=True)
 
-    sys_blood_pressure = edc_models.SystolicPressureField(null=True, blank=False,)
+    sys_blood_pressure = edc_models.SystolicPressureField(null=True, blank=False)
 
-    dia_blood_pressure = edc_models.DiastolicPressureField(null=True, blank=False,)
+    dia_blood_pressure = edc_models.DiastolicPressureField(null=True, blank=False)
 
     glucose = models.DecimalField(
         verbose_name="Blood Glucose",

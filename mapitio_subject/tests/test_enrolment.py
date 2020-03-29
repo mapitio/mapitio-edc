@@ -1,7 +1,6 @@
 from django.test import TestCase
 
 
-class TestEnrollment(TestCase):
-
+class TestEnrolment(TestCase):
     def test_(self):
         pass

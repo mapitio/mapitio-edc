@@ -2,20 +2,21 @@ from django.apps import apps as django_apps
 from edc_protocol import Protocol
 from edc_review_dashboard.views import SubjectReviewListboardView
 
-from .patterns import screening_identifier
+from .patterns import screening_identifier, hospital_identifier
 from .views import (
     AeListboardView,
     DeathReportListboardView,
+    EnrolmentListboardView,
     ScreeningListboardView,
     SubjectDashboardView,
     SubjectListboardView,
 )
 
-app_name = "inte_dashboard"
+app_name = "mapitio_dashboard"
 
 
 # make sure subject_identifier_pattern is correct to avoid
-# ModelAdminNextUrlRedirectError at /admin/inte_consent/subjectconsent/add/
+# ModelAdminNextUrlRedirectError at /admin/mapitio_consent/subjectconsent/add/
 
 urlpatterns = SubjectListboardView.urls(
     namespace=app_name,
@@ -27,6 +28,12 @@ urlpatterns += ScreeningListboardView.urls(
     label="screening_listboard",
     identifier_label="screening_identifier",
     identifier_pattern=screening_identifier,
+)
+urlpatterns += EnrolmentListboardView.urls(
+    namespace=app_name,
+    label="enrolment_listboard",
+    identifier_label="hospital_identifier",
+    identifier_pattern=hospital_identifier,
 )
 urlpatterns += SubjectDashboardView.urls(
     namespace=app_name,

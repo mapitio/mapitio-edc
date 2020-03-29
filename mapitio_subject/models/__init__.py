@@ -1,6 +1,6 @@
 from .baseline_data import BaselineData
 from .blood_results import BloodResults
-from .enrollment import Enrollment
+from .enrolment import Enrolment
 from .follow_up import FollowUp
 from .hiv_history import HivHistory
 from .investigations import Investigations

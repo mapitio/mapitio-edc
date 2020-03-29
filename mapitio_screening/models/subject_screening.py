@@ -5,12 +5,14 @@ from django.core.validators import (
 )
 from django.db import models
 from django_crypto_fields.fields import EncryptedCharField
-from edc_constants.choices import YES_NO, SELECTION_METHOD
+from edc_constants.choices import YES_NO
+from edc_constants.constants import YES, NO
 from edc_model.models import BaseUuidModel
 from edc_screening.model_mixins import ScreeningModelMixin
 from edc_screening.screening_identifier import ScreeningIdentifier
+from mapitio_screening.constants import INTEGRATED_CLINIC
 
-from ..choices import CLINIC_CHOICES
+from ..choices import CLINIC_CHOICES, SELECTION_METHOD
 from ..eligibility import check_eligible_final
 
 
@@ -40,12 +42,14 @@ class SubjectScreening(
         verbose_name="How was the patient selected for screening?",
         max_length=25,
         choices=SELECTION_METHOD,
+        default=INTEGRATED_CLINIC,
     )
 
     clinic_type = models.CharField(
         verbose_name="From which type of clinic was the patient selected",
         max_length=25,
         choices=CLINIC_CHOICES,
+        default=INTEGRATED_CLINIC,
     )
 
     initials = EncryptedCharField(
@@ -65,6 +69,7 @@ class SubjectScreening(
         ),
         max_length=15,
         choices=YES_NO,
+        default=YES,
     )
 
     requires_acute_care = models.CharField(
@@ -73,6 +78,7 @@ class SubjectScreening(
         ),
         max_length=25,
         choices=YES_NO,
+        default=NO,
     )
 
     lives_nearby = models.CharField(
@@ -82,6 +88,7 @@ class SubjectScreening(
         ),
         max_length=15,
         choices=YES_NO,
+        default=YES,
     )
 
     def save(self, *args, **kwargs):

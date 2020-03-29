@@ -81,6 +81,8 @@ class SubjectConsent(
         choices=IDENTITY_TYPE,
     )
 
+    retrospective_consent = models.BooleanField(default=False)
+
     on_site = CurrentSiteManager()
 
     objects = SubjectConsentManager()

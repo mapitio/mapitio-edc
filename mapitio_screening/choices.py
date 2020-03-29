@@ -1,4 +1,9 @@
-from edc_constants.constants import OTHER
+from edc_constants.constants import (
+    OTHER,
+    RANDOM_SAMPLING,
+    PURPOSIVELY_SELECTED,
+)
+from mapitio_screening.constants import RETROSPECTIVE, INTEGRATED_CLINIC
 
 from .constants import NCD_CLINIC, HIV_CLINIC
 
@@ -17,4 +22,17 @@ REFUSAL_REASONS = (
     ("need_to_think_about_it", "I haven't had a chance to think about it"),
     ("moving", "I am moving to another area"),
     (OTHER, "Other, please specify"),
+)
+
+SELECTION_METHOD = (
+    (RANDOM_SAMPLING, "Random sampling"),
+    (PURPOSIVELY_SELECTED, "Purposively selected"),
+    (RETROSPECTIVE, "Retrospective"),
+)
+
+
+CLINIC_CHOICES = (
+    (HIV_CLINIC, "HIV Clinic"),
+    (NCD_CLINIC, "NCD Clinic"),
+    (INTEGRATED_CLINIC, "Integrated Clinic"),
 )

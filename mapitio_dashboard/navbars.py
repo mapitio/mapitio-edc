@@ -3,9 +3,9 @@ from edc_review_dashboard.navbars import navbar_item as review_navbar_item
 from edc_adverse_event.navbars import ae_navbar_item, tmg_navbar_item
 from edc_data_manager.navbar_item import dm_navbar_item
 
-no_url_namespace = False  # True if settings.APP_NAME == "inte_dashboard" else False
+no_url_namespace = False  # True if settings.APP_NAME == "mapitio_dashboard" else False
 
-navbar = Navbar(name="inte_dashboard")
+navbar = Navbar(name="mapitio_dashboard")
 
 navbar.append_item(
     NavbarItem(
@@ -15,6 +15,18 @@ navbar.append_item(
         fa_icon="fas fa-user-plus",
         codename="edc_navbar.nav_screening_section",
         url_name="screening_listboard_url",
+        no_url_namespace=no_url_namespace,
+    )
+)
+
+navbar.append_item(
+    NavbarItem(
+        name="enrolled_subject",
+        title="Enrolment",
+        label="Enrolment",
+        fa_icon="fas fa-user-plus",
+        codename="edc_navbar.nav_enrolment_section",
+        url_name="enrolment_listboard_url",
         no_url_namespace=no_url_namespace,
     )
 )
