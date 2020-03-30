@@ -6,14 +6,12 @@ from django.core.validators import (
 from django.db import models
 from django_crypto_fields.fields import EncryptedCharField
 from edc_constants.choices import YES_NO
-from edc_constants.constants import YES, NO
 from edc_model.models import BaseUuidModel
 from edc_screening.model_mixins import ScreeningModelMixin
 from edc_screening.screening_identifier import ScreeningIdentifier
 from mapitio_screening.constants import INTEGRATED_CLINIC
 
 from ..choices import CLINIC_CHOICES, SELECTION_METHOD
-from ..eligibility import check_eligible_final
 
 
 class SubjectScreeningModelError(Exception):
@@ -28,6 +26,14 @@ class SubjectScreening(
     ScreeningModelMixin, BaseUuidModel,
 ):
     identifier_cls = ScreeningIdentifier
+
+    enrolment_identifier = models.CharField(
+        verbose_name="Enrolment ID",
+        max_length=50,
+        blank=True,
+        unique=True,
+        editable=False,
+    )
 
     screening_consent = models.CharField(
         verbose_name=(
@@ -61,39 +67,6 @@ class SubjectScreening(
         help_text="Use UPPERCASE letters only. May be 2 or 3 letters.",
         blank=False,
     )
-
-    qualifying_condition = models.CharField(
-        verbose_name=(
-            "Does the patient have at least one of the following "
-            "conditions: HIV, Diabetes and/or Hypertension"
-        ),
-        max_length=15,
-        choices=YES_NO,
-        default=YES,
-    )
-
-    requires_acute_care = models.CharField(
-        verbose_name=(
-            "Does the patient require acute care including in-patient admission"
-        ),
-        max_length=25,
-        choices=YES_NO,
-        default=NO,
-    )
-
-    lives_nearby = models.CharField(
-        verbose_name=(
-            "Is the patient planning to remain in the catchment area "
-            "for at least 6 months"
-        ),
-        max_length=15,
-        choices=YES_NO,
-        default=YES,
-    )
-
-    def save(self, *args, **kwargs):
-        check_eligible_final(self)
-        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Subject Screening"

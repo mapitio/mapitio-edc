@@ -115,7 +115,7 @@ INSTALLED_APPS = [
     "mapitio_dashboard.apps.AppConfig",
     "mapitio_labs.apps.AppConfig",
     "mapitio_metadata_rules.apps.AppConfig",
-    # "mapitio_reference.apps.AppConfig",
+    "mapitio_reference.apps.AppConfig",
     "mapitio_screening.apps.AppConfig",
     "mapitio_subject.apps.AppConfig",
     "mapitio_consent.apps.AppConfig",

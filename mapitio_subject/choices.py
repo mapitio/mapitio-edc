@@ -1,3 +1,4 @@
+from edc_consent.constants import HOSPITAL_NUMBER, NATIONAL_IDENTIFIER
 from edc_constants.constants import FASTING, NON_FASTING, NORMAL, OTHER
 
 CRF_STATUS = (
@@ -27,5 +28,14 @@ ECHO = (
     ("left_ventricular_hypertrophy", "Left ventricular hypertrophy"),
     ("dystolic_dysfunction", "Dystolic dysfunction"),
     ("cardiomyopathy ", "Cardiomyopathy "),
+    (OTHER, "Other"),
+)
+
+
+IDENTITY_TYPE = (
+    (HOSPITAL_NUMBER, "Hospital Identifier"),
+    (NATIONAL_IDENTIFIER, "National Identifier"),
+    ("DRIVERS", "Driver's License"),
+    ("PASSPORT", "Passport"),
     (OTHER, "Other"),
 )
