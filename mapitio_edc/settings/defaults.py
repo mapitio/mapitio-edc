@@ -137,6 +137,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "multisite.middleware.DynamicSiteMiddleware",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -402,6 +403,12 @@ EDC_RANDOMIZATION_SKIP_VERIFY_CHECKS = True
 
 # edc_sites
 EDC_SITES_MODULE_NAME = "mapitio_edc.sites"
+
+# django-simple-history
+SIMPLE_HISTORY_REVERT_ENABLED = False
+
+# django-multisite
+CACHE_MULTISITE_KEY_PREFIX = APP_NAME
 
 # static
 if env("AWS_ENABLED"):
