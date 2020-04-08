@@ -113,8 +113,8 @@ INSTALLED_APPS = [
     "edc_protocol.apps.AppConfig",
     "edc_visit_tracking.apps.AppConfig",
     "edc_facility.apps.AppConfig",
-    "mapitio_lists.apps.AppConfig",
     "mapitio_dashboard.apps.AppConfig",
+    "mapitio_lists.apps.AppConfig",
     "mapitio_labs.apps.AppConfig",
     "mapitio_metadata_rules.apps.AppConfig",
     "mapitio_reference.apps.AppConfig",
@@ -124,9 +124,9 @@ INSTALLED_APPS = [
     # "mapitio_form_validators.apps.AppConfig",
     "mapitio_visit_schedule.apps.AppConfig",
     "mapitio_ae.apps.AppConfig",
-    "mapitio_auth.apps.AppConfig",
     "mapitio_prn.apps.AppConfig",
     "mapitio_export.apps.AppConfig",
+    "mapitio_auth.apps.AppConfig",
     "mapitio_edc.apps.AppConfig",
 ]
 
