@@ -2,6 +2,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mapitio.settings.uat")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mapitio_edc.settings.uat")
 
 application = get_wsgi_application()
