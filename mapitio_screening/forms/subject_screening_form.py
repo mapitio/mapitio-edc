@@ -25,10 +25,4 @@ class SubjectScreeningForm(
             "initials",
             "gender",
             "age_in_years",
-            "qualifying_condition",
-            "lives_nearby",
-            "requires_acute_care",
-            "unsuitable_for_study",
-            "reasons_unsuitable",
-            "unsuitable_agreed",
         ]

@@ -3,7 +3,6 @@ from edc_visit_schedule import FormsCollection, Crf
 crfs_prn = FormsCollection(name="prn",)
 
 crfs_d1 = FormsCollection(
-    Crf(show_order=100, model="mapitio_subject.enrollment"),
     Crf(show_order=110, model="mapitio_subject.hivhistory"),
     Crf(show_order=120, model="mapitio_subject.ncdhistory"),
     Crf(show_order=130, model="mapitio_subject.baselinedata"),

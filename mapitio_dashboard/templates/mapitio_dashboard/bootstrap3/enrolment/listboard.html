@@ -20,6 +20,7 @@
     <!-- begin results header -->
     <th>#</th>
     <th></th>
+    <th>Enrolment ID</th>
     <th>Hospital ID</th>
     <th>Initials</th>
     <th>Age/Gender</th>
@@ -34,15 +35,7 @@
 {% block listboard_table_button_column %}
     <td style="white-space: nowrap">
     <div class="btn-group">
-    {% screening_button result %}
-    {% eligibility_button result %}
-    {% if result.eligible %}
-        {% if result.consent %}
-            {% dashboard_button result %}
-        {% else %}
-            {% add_consent_button result %}
-        {% endif %}
-    {% endif %}
+    {% enrolment_button result %}
     </div>
     </td>
 {% endblock listboard_table_button_column %}
@@ -50,10 +43,11 @@
 
 {% block listboard_table_columns %}
 
-    <td>{{ result.hospital_identifier }} </td>
+    <td>{{ result.human_enrolment_identifier }} </td>
+    <td>{{ result.human_identity }} </td>
     <td nowrap>{{ result.initials }}</td>
     <td nowrap>{{ result.age_in_years }} yrs {{ result.gender }}</td>
-    <td nowrap>{% if result.consent %}{{ result.consent.subject_identifier }}{% else %} -- {% endif %}</td>
+    <td nowrap>{{ result.consent.subject_identifier }}</td>
     <td nowrap>{{ result.user_created }}</td>
     <td nowrap>{{ result.object.modified|date:"SHORT_DATETIME_FORMAT" }}</td>  
     <td nowrap>{{ result.hostname_created }}</td>

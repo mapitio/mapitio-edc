@@ -4,3 +4,6 @@ from .enrolment_admin import EnrolmentAdmin
 from .follow_up_admin import FollowUpAdmin
 from .hiv_history_admin import HivHistoryAdmin
 from .investigations_admin import InvestigationsAdmin
+from .ncd_history_admin import NcdHistoryAdmin
+from .subject_requisition_admin import SubjectRequisitionAdmin
+from .subject_visit_admin import SubjectVisitAdmin

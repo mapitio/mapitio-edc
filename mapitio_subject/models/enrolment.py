@@ -1,29 +1,39 @@
 from django.core.validators import (
     MinValueValidator,
     MaxValueValidator,
-    RegexValidator,
-    MinLengthValidator,
-    MaxLengthValidator,
 )
 from dateutil.relativedelta import relativedelta
 from django.db import models
-from django_crypto_fields.fields import EncryptedCharField
-from edc_consent.field_mixins import IdentityFieldsMixin
-from edc_constants.choices import GENDER
-from edc_identifier.model_mixins import UniqueSubjectIdentifierModelMixin
+from edc_consent.constants import HOSPITAL_NUMBER
+from edc_consent.field_mixins import IdentityFieldsMixin, PersonalFieldsMixin
 from edc_model.models import BaseUuidModel, HistoricalRecords
-from edc_model_fields.fields import IsDateEstimatedField
+from edc_screening.model_mixins import ScreeningIdentifierModelMixin
 from edc_sites.models import CurrentSiteManager, SiteModelMixin
+from edc_utils import age
 from edc_utils.date import get_utcnow
-from mapitio_subject.choices import CRF_STATUS
+from mapitio_screening.choices import CLINIC_CHOICES
+from mapitio_screening.constants import INTEGRATED_CLINIC
+
+from ..choices import CRF_STATUS, IDENTITY_TYPE
 
 
 class Enrolment(
-    UniqueSubjectIdentifierModelMixin,
+    ScreeningIdentifierModelMixin,
     IdentityFieldsMixin,
+    PersonalFieldsMixin,
     SiteModelMixin,
     BaseUuidModel,
 ):
+
+    screening_identifier_field_name = "enrolment_identifier"
+
+    enrolment_identifier = models.CharField(
+        verbose_name="Enrolment ID",
+        max_length=50,
+        blank=True,
+        unique=True,
+        editable=False,
+    )
 
     report_datetime = models.DateTimeField(
         verbose_name="Report Date and Time",
@@ -31,21 +41,16 @@ class Enrolment(
         help_text="Date and time of this report.",
     )
 
-    initials = EncryptedCharField(
-        validators=[
-            RegexValidator("[A-Z]{1,3}", "Invalid format"),
-            MinLengthValidator(2),
-            MaxLengthValidator(3),
-        ],
-        help_text="Use UPPERCASE letters only. May be 2 or 3 letters.",
-        blank=False,
+    identity_type = models.CharField(
+        verbose_name="What type of identity number is this?",
+        max_length=25,
+        choices=IDENTITY_TYPE,
+        default=HOSPITAL_NUMBER,
     )
 
-    dob = models.DateField(verbose_name="Date of birth")
-
-    is_dob_estimated = IsDateEstimatedField(verbose_name="Is date of birth estimated?")
-
-    gender = models.CharField(choices=GENDER, max_length=10)
+    clinic_registration_datetime = models.DateTimeField(
+        verbose_name="Date patient enrolled at the clinic", default=get_utcnow,
+    )
 
     age_in_years = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(110)],
@@ -53,10 +58,12 @@ class Enrolment(
         null=True,
     )
 
-    hospital_identifier = EncryptedCharField(unique=True, blank=False)
-
-    clinic_registration_datetime = models.DateTimeField(
-        verbose_name="Date patient enrolled at the clinic", default=get_utcnow,
+    clinic_type = models.CharField(
+        verbose_name="From which type of clinic was the patient selected",
+        max_length=25,
+        choices=CLINIC_CHOICES,
+        default=INTEGRATED_CLINIC,
+        editable=False,
     )
 
     crf_status = models.CharField(
@@ -71,13 +78,12 @@ class Enrolment(
 
     history = HistoricalRecords()
 
+    def __str__(self):
+        return f"{self.first_name} {self.initials}"
+
     def save(self, *args, **kwargs):
         if self.dob and self.report_datetime:
-            self.age_in_years = relativedelta(
-                self.report_datetime, relativedelta(years=self.age_in_years)
-            ).years
-        else:
-            self.age_in_years = None
+            self.age_in_years = age(self.dob, self.report_datetime.date()).years
         super().save(*args, **kwargs)
 
     class Meta:

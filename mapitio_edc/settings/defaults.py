@@ -4,7 +4,9 @@ import sys
 
 from pathlib import Path
 
+from edc_utils import get_datetime_from_env
 
+MAPITIO_SCREENING_DISABLED = True
 BASE_DIR = str(Path(os.path.dirname(os.path.abspath(__file__))).parent.parent)
 ENV_DIR = str(Path(os.path.dirname(os.path.abspath(__file__))).parent.parent)
 
@@ -45,7 +47,7 @@ ETC_DIR = env.str("DJANGO_ETC_FOLDER")
 
 TEST_DIR = os.path.join(BASE_DIR, APP_NAME, "tests")
 
-ALLOWED_HOSTS = ["*"]  # env.list('DJANGO_ALLOWED_HOSTS')
+ALLOWED_HOSTS = []
 
 ENFORCE_RELATED_ACTION_ITEM_EXISTS = False
 
@@ -115,7 +117,7 @@ INSTALLED_APPS = [
     "mapitio_dashboard.apps.AppConfig",
     "mapitio_labs.apps.AppConfig",
     "mapitio_metadata_rules.apps.AppConfig",
-    # "mapitio_reference.apps.AppConfig",
+    "mapitio_reference.apps.AppConfig",
     "mapitio_screening.apps.AppConfig",
     "mapitio_subject.apps.AppConfig",
     "mapitio_consent.apps.AppConfig",
@@ -379,11 +381,23 @@ DATA_DICTIONARY_APP_LABELS = [
 # edc_facility
 EDC_FACILITY_USE_DEFAULTS = True
 
+# edc_protocol
+EDC_PROTOCOL = env.str("EDC_PROTOCOL")
+EDC_PROTOCOL_INSTITUTION_NAME = env.str("EDC_PROTOCOL_INSTITUTION_NAME")
+EDC_PROTOCOL_NUMBER = env.str("EDC_PROTOCOL_NUMBER")
+EDC_PROTOCOL_PROJECT_NAME = env.str("EDC_PROTOCOL_PROJECT_NAME")
+EDC_PROTOCOL_STUDY_OPEN_DATETIME = get_datetime_from_env(
+    *env.list("EDC_PROTOCOL_STUDY_OPEN_DATETIME")
+)
+EDC_PROTOCOL_STUDY_CLOSE_DATETIME = get_datetime_from_env(
+    *env.list("EDC_PROTOCOL_STUDY_CLOSE_DATETIME")
+)
+EDC_PROTOCOL_TITLE = env.str("EDC_PROTOCOL_TITLE")
+
 # edc_randomization
 EDC_RANDOMIZATION_LIST_PATH = env.str("EDC_RANDOMIZATION_LIST_PATH")
 EDC_RANDOMIZATION_BLINDED_TRIAL = env.str("EDC_RANDOMIZATION_BLINDED_TRIAL")
 EDC_RANDOMIZATION_UNBLINDED_USERS = env.list("EDC_RANDOMIZATION_UNBLINDED_USERS")
-EDC_RANDOMIZATION_LIST_MODEL = env.str("EDC_RANDOMIZATION_LIST_MODEL")
 EDC_RANDOMIZATION_SKIP_VERIFY_CHECKS = True
 
 # edc_sites

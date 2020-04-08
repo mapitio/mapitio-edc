@@ -1,10 +1,11 @@
+from django.conf import settings
 from edc_consent.consent import Consent
 from edc_consent.site_consents import site_consents
 from edc_constants.constants import MALE, FEMALE
 from edc_protocol import Protocol
 
 v1 = Consent(
-    "mapitio_consent.subjectconsent",
+    settings.SUBJECT_CONSENT_MODEL,
     version="1",
     start=Protocol().study_open_datetime,
     end=Protocol().study_close_datetime,

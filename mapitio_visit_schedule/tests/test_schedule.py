@@ -1,6 +1,6 @@
 from django.test import TestCase, tag
 
-from ..visit_schedules.schedule import schedule_hiv, schedule_ncd
+from ..visit_schedules.schedule import schedule
 from ..visit_schedules.visit_schedule import visit_schedule
 
 
@@ -11,21 +11,15 @@ class TestVisitSchedule(TestCase):
         self.assertEqual(visit_schedule.locator_model, "edc_locator.subjectlocator")
 
     def test_schedule_hiv_models(self):
-        self.assertEqual(schedule_hiv.onschedule_model, "mapitio_prn.onschedulehiv")
-        self.assertEqual(schedule_hiv.offschedule_model, "mapitio_prn.endofstudy")
-        self.assertEqual(schedule_hiv.consent_model, "mapitio_consent.subjectconsent")
-        self.assertEqual(schedule_hiv.appointment_model, "edc_appointment.appointment")
-
-    def test_schedule_ncd_models(self):
-        self.assertEqual(schedule_ncd.onschedule_model, "mapitio_prn.onschedulencd")
-        self.assertEqual(schedule_ncd.offschedule_model, "mapitio_prn.endofstudy")
-        self.assertEqual(schedule_ncd.consent_model, "mapitio_consent.subjectconsent")
-        self.assertEqual(schedule_ncd.appointment_model, "edc_appointment.appointment")
+        self.assertEqual(schedule.onschedule_model, "mapitio_prn.onschedulehiv")
+        self.assertEqual(schedule.offschedule_model, "mapitio_prn.endofstudy")
+        self.assertEqual(schedule.consent_model, "mapitio_consent.subjectconsent")
+        self.assertEqual(schedule.appointment_model, "edc_appointment.appointment")
 
     def test_visit_codes_hiv(self):
         self.assertEqual(
             ["1000", "1030", "1060", "1090", "1120"],
-            [visit for visit in schedule_ncd.visits],
+            [visit for visit in schedule.visits],
         )
 
     def test_visit_codes_ncd(self):

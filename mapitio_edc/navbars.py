@@ -25,6 +25,14 @@ navbar.append_item(
     [
         item
         for item in mapitio_dashboard_navbar.items
+        if item.name == "enrolled_subject"
+    ][0]
+)
+
+navbar.append_item(
+    [
+        item
+        for item in mapitio_dashboard_navbar.items
         if item.name == "consented_subject"
     ][0]
 )

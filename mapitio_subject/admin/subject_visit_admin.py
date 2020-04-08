@@ -26,8 +26,8 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmi
                     "reason",
                     "reason_unscheduled",
                     "reason_unscheduled_other",
-                    "info_source",
-                    "info_source_other",
+                    # "info_source",
+                    # "info_source_other",
                     "comments",
                 ]
             },
@@ -39,5 +39,5 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmi
     radio_fields = {
         "reason": admin.VERTICAL,
         "reason_unscheduled": admin.VERTICAL,
-        "info_source": admin.VERTICAL,
+        # "info_source": admin.VERTICAL,
     }

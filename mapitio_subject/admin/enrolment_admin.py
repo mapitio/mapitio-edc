@@ -18,6 +18,8 @@ class EnrolmentAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
             {
                 "fields": (
                     "report_datetime",
+                    "first_name",
+                    "last_name",
                     "initials",
                     "dob",
                     "is_dob_estimated",

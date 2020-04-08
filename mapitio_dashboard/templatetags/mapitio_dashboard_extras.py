@@ -16,6 +16,24 @@ register = template.Library()
     f"buttons/screening_button.html",
     takes_context=True,
 )
+def enrolment_button(context, model_wrapper):
+    title = "Edit subject's enrolment form"
+    return dict(
+        perms=context["perms"],
+        enrolment_identifier=model_wrapper.object.enrolment_identifier,
+        href=model_wrapper.href,
+        title=title,
+        YES=YES,
+        NO=NO,
+        TBD=TBD,
+    )
+
+
+@register.inclusion_tag(
+    f"mapitio_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/"
+    f"buttons/screening_button.html",
+    takes_context=True,
+)
 def screening_button(context, model_wrapper):
     title = "Edit subject's screening form"
     return dict(

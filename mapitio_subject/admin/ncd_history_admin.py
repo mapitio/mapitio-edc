@@ -35,8 +35,8 @@ class NcdHistoryAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistor
 
     radio_fields = {
         "diabetes_at_enrollment": admin.VERTICAL,
-        "diabetes_rx_enrollment": admin.VERTICAL,
+        # "diabetes_rx_enrollment": admin.VERTICAL,
         "hypertension_at_enrollment": admin.VERTICAL,
-        "hypertension_rx_enrollment": admin.VERTICAL,
+        # "hypertension_rx_enrollment": admin.VERTICAL,
         "crf_status": admin.VERTICAL,
     }

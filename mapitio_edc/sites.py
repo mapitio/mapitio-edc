@@ -1,5 +1,7 @@
 from edc_sites.single_site import SingleSite
 
+fqdn = "mapitio.clinicedc.org"
+
 all_sites = {
     "tanzania": [
         SingleSite(
@@ -7,7 +9,7 @@ all_sites = {
             "hindu_mandal",
             country="tanzania",
             country_code="tz",
-            domain="hindu-mandal.tz.mapitio.clinicedc.org",
+            domain=f"hindu-mandal.tz.{fqdn}",
         ),
     ],
 }

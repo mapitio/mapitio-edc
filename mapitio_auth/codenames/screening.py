@@ -1,5 +1,6 @@
-from edc_auth.codenames import screening  # noqa
+from edc_auth import screening  # noqa
 
+screening = []
 # screening += [
 #     "mapitio_screening.add_subjectscreening",
 #     "mapitio_screening.add_subjectrefusal",
