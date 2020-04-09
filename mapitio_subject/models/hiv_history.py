@@ -29,7 +29,7 @@ class HivHistory(CrfModelMixin, edc_models.BaseUuidModel):
         on_delete=PROTECT,
         related_name="current_regimen",
         null=True,
-        blank=True,
+        blank=False,
     )
 
     other_current_regimen = edc_models.OtherCharField(null=True, blank=True)
@@ -51,7 +51,7 @@ class HivHistory(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
         help_text="This is 'previous' regimen",
         null=True,
-        blank=True,
+        blank=False,
     )
 
     other_prev_one_regimen = edc_models.OtherCharField(null=True, blank=True)
@@ -86,7 +86,7 @@ class HivHistory(CrfModelMixin, edc_models.BaseUuidModel):
         ),
         related_name="prev_two_regimen",
         null=True,
-        blank=True,
+        blank=False,
     )
 
     other_prev_two_regimen = edc_models.OtherCharField(null=True, blank=True)
