@@ -1,5 +1,3 @@
-import pdb
-
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
@@ -30,7 +28,6 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
             _, schedule = site_visit_schedules.get_by_onschedule_model(
                 "mapitio_prn.onschedule"
             )
-            pdb.set_trace()
             try:
                 schedule.refresh_schedule(
                     subject_identifier=instance.subject_identifier
@@ -39,7 +36,6 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
                 raise MapitioSubjectConsentError(
                     f"Is subject on schedule? See `{instance.subject_identifier}`. Got `{e}`"
                 )
-            pdb.set_trace()
         else:
             subject_screening = SubjectScreening.objects.get(
                 screening_identifier=instance.screening_identifier

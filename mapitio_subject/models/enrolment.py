@@ -2,10 +2,10 @@ from django.core.validators import (
     MinValueValidator,
     MaxValueValidator,
 )
-from dateutil.relativedelta import relativedelta
 from django.db import models
 from edc_consent.constants import HOSPITAL_NUMBER
 from edc_consent.field_mixins import IdentityFieldsMixin, PersonalFieldsMixin
+from edc_constants.choices import GENDER
 from edc_model.models import BaseUuidModel, HistoricalRecords
 from edc_screening.model_mixins import ScreeningIdentifierModelMixin
 from edc_sites.models import CurrentSiteManager, SiteModelMixin
@@ -39,6 +39,10 @@ class Enrolment(
         verbose_name="Report Date and Time",
         default=get_utcnow,
         help_text="Date and time of this report.",
+    )
+
+    gender = models.CharField(
+        verbose_name="Gender", choices=GENDER, max_length=1, null=True, blank=False,
     )
 
     identity_type = models.CharField(

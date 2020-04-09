@@ -86,4 +86,4 @@ def update_enrolment_consent_post_save(sender, instance, raw, created, using, **
             enrolment_identifier=screening.enrolment_identifier
         )
         enrolment.subject_identifier = instance.subject_identifier
-        enrolment.save_base()
+        enrolment.save(update_fields=["subject_identifier"])

@@ -32,6 +32,8 @@ class HivHistory(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
+    other_current_regimen = edc_models.OtherCharField(null=True, blank=True)
+
     current_is_initial = models.CharField(
         verbose_name="Is the <u>current</u> regimen the patient's initial regimen?",
         max_length=5,

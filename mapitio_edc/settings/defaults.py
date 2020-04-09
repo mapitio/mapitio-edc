@@ -33,6 +33,7 @@ env = environ.Env(
     SIMPLE_HISTORY_REVERT_DISABLED=(bool, False),
 )
 
+
 env.read_env(os.path.join(ENV_DIR, ".env"))
 
 DEBUG = env("DJANGO_DEBUG")

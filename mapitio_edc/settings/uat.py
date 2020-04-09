@@ -10,3 +10,4 @@ ALLOWED_HOSTS = [
     "hindu-mandal.uat.tz.mapitio.clinicedc.org",
     "localhost",
 ]
+DATABASES = {"default": env.db()}

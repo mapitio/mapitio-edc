@@ -51,6 +51,7 @@ class HivHistoryAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistor
 
     radio_fields = {
         "crf_status": admin.VERTICAL,
+        "current_regimen": admin.VERTICAL,
         "current_is_initial": admin.VERTICAL,
         "prev_one_regimen": admin.VERTICAL,
         "previous_is_initial": admin.VERTICAL,

@@ -54,8 +54,6 @@ list_data = {
         ("EFV", "EFV"),
         ("Lopinavir_r", "Lopinavir/r"),
         ("NVP", "NVP"),
-        (NOT_APPLICABLE, "Not applicable"),
-        (UNKNOWN, "Unknown"),
         (OTHER, "Other, specify"),
     ],
     "mapitio_lists.visitreasons": [
