@@ -5,7 +5,7 @@ from django.core.validators import (
 from django.db import models
 from edc_consent.constants import HOSPITAL_NUMBER
 from edc_consent.field_mixins import IdentityFieldsMixin, PersonalFieldsMixin
-from edc_constants.choices import GENDER
+from edc_constants.choices import GENDER, YES_NO
 from edc_model.models import BaseUuidModel, HistoricalRecords
 from edc_screening.model_mixins import ScreeningIdentifierModelMixin
 from edc_sites.models import CurrentSiteManager, SiteModelMixin

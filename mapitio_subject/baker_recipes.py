@@ -4,12 +4,13 @@ from edc_consent.constants import HOSPITAL_NUMBER
 from edc_constants.constants import YES, NO, COMPLETE
 from edc_utils import get_utcnow
 from mapitio_subject.models import (
+    DiabetesReview,
     Enrolment,
-    BaselineData,
+    BasicIndicators,
     BloodResults,
-    HivHistory,
+    HivReview,
+    HypertensionReview,
     Investigations,
-    NcdHistory,
 )
 from model_bakery import seq
 from model_bakery.recipe import Recipe
@@ -37,8 +38,9 @@ enrolment = Recipe(
     user_created="erikvw",
 )
 
-baselinedata = Recipe(BaselineData, crf_status=COMPLETE)
+basicindicators = Recipe(BasicIndicators, crf_status=COMPLETE)
 bloodresults = Recipe(BloodResults, crf_status=COMPLETE)
-hivhistory = Recipe(HivHistory, crf_status=COMPLETE)
+hivreview = Recipe(HivReview, crf_status=COMPLETE)
 investigations = Recipe(Investigations, crf_status=COMPLETE)
-ncdhistory = Recipe(NcdHistory, crf_status=COMPLETE)
+diabetesreview = Recipe(DiabetesReview, crf_status=COMPLETE)
+hypertensionreview = Recipe(HypertensionReview, crf_status=COMPLETE)

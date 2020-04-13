@@ -14,7 +14,7 @@ class EnrolmentAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
 
     fieldsets = (
         (
-            "Enrollment",
+            "Enrolment",
             {
                 "fields": (
                     "report_datetime",
@@ -28,8 +28,6 @@ class EnrolmentAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
                     "identity_type",
                     "confirm_identity",
                     "clinic_registration_datetime",
-                    "crf_status",
-                    "comments",
                 ),
             },
         ),

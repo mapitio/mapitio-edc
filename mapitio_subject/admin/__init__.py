@@ -1,9 +1,11 @@
-from .baseline_data_admin import BaselineDataAdmin
+from .basic_indicators_admin import BasicIndicatorsAdmin
 from .blood_results_admin import BloodResultsAdmin
+from .diabetes_review_admin import DiabetesReviewAdmin
 from .enrolment_admin import EnrolmentAdmin
-from .follow_up_admin import FollowUpAdmin
-from .hiv_history_admin import HivHistoryAdmin
+
+# from .follow_up_admin import FollowUpAdmin
+from .hiv_review_admin import HivHistoryAdmin
+from .hypertension_review_admin import HypertensionReviewAdmin
 from .investigations_admin import InvestigationsAdmin
-from .ncd_history_admin import NcdHistoryAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin
 from .subject_visit_admin import SubjectVisitAdmin

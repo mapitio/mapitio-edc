@@ -4,16 +4,16 @@ from edc_form_label.form_label_modeladmin_mixin import FormLabelModelAdminMixin
 from edc_model_admin import SimpleHistoryAdmin
 
 from ..admin_site import mapitio_subject_admin
-from ..forms import HivHistoryForm
-from ..models import HivHistory
+from ..forms import HivReviewForm
+from ..models import HivReview
 from .modeladmin import CrfModelAdminMixin
 
 """Previous ARV regimens"""
 
 
-@admin.register(HivHistory, site=mapitio_subject_admin)
+@admin.register(HivReview, site=mapitio_subject_admin)
 class HivHistoryAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryAdmin):
-    form = HivHistoryForm
+    form = HivReviewForm
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),

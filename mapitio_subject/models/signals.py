@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from edc_constants.constants import NO, YES
+from edc_constants.constants import NO
 from mapitio_consent.models import SubjectConsent
 from mapitio_screening.models import SubjectScreening
 

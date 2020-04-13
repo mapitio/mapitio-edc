@@ -3,16 +3,16 @@ from edc_action_item.forms.action_item_form_mixin import ActionItemFormMixin
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
 
-from ..models import NcdHistory
+from ..models import HypertensionReview
 
 
-class NcdHistoryFormValidator(FormValidator):
+class HypertensionReviewFormValidator(FormValidator):
     pass
 
 
-class NcdHistoryForm(CrfModelFormMixin, ActionItemFormMixin, forms.ModelForm):
-    form_validator_cls = NcdHistoryFormValidator
+class HypertensionReviewForm(CrfModelFormMixin, ActionItemFormMixin, forms.ModelForm):
+    form_validator_cls = HypertensionReviewFormValidator
 
     class Meta:
-        model = NcdHistory
+        model = HypertensionReview
         fields = "__all__"

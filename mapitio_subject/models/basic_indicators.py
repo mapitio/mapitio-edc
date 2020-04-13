@@ -1,4 +1,5 @@
 from django.db import models
+from edc_constants.choices import YES_NO
 from edc_crf.model_mixins import CrfModelMixin
 from edc_model import models as edc_models
 from edc_reportable import MILLIGRAMS_PER_DECILITER, MILLIMOLES_PER_LITER
@@ -7,9 +8,30 @@ from mapitio_subject.choices import CRF_STATUS, FASTING_CHOICES
 from .subject_visit import SubjectVisit
 
 
-class BaselineData(CrfModelMixin, edc_models.BaseUuidModel):
+class BasicIndicators(CrfModelMixin, edc_models.BaseUuidModel):
 
     subject_visit = models.ForeignKey(SubjectVisit, on_delete=models.PROTECT)
+
+    hiv_pos = models.CharField(
+        verbose_name="Is the patient <u>HIV</U> positive?",
+        max_length=25,
+        choices=YES_NO,
+        help_text="Either before, on or after registration with this clinic.",
+    )
+
+    diabetic = models.CharField(
+        verbose_name="Has this patient been diagnosed with <u>Diabetes</U>?",
+        max_length=25,
+        choices=YES_NO,
+        help_text="Either before, on or after registration with this clinic.",
+    )
+
+    hypertensive = models.CharField(
+        verbose_name="Has this patient been diagnosed with <u>Hypertension</U>?",
+        max_length=25,
+        choices=YES_NO,
+        help_text="Either before, on or after registration with this clinic.",
+    )
 
     height = edc_models.HeightField(null=True, blank=True)
 
@@ -55,5 +77,5 @@ class BaselineData(CrfModelMixin, edc_models.BaseUuidModel):
     comments = models.TextField(null=True, blank=True)
 
     class Meta:
-        verbose_name = "Baseline"
-        verbose_name_plural = "Baseline"
+        verbose_name = "Basic Indicators"
+        verbose_name_plural = "Basic Indicators"

@@ -2,18 +2,19 @@ from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_crf.model_mixins import CrfModelMixin
-from edc_model.models.base_uuid_model import BaseUuidModel
+from edc_model import models as edc_models
+from mapitio_lists.models import DiabetesTreatment
 from mapitio_subject.choices import CRF_STATUS
 
 from .subject_visit import SubjectVisit
 
 
-class FollowUp(CrfModelMixin, BaseUuidModel):
+class FollowUp(CrfModelMixin, edc_models.BaseUuidModel):
 
     subject_visit = models.ForeignKey(SubjectVisit, on_delete=models.PROTECT)
 
     diabetes = models.CharField(
-        verbose_name="Since the patient started at this clinic, have they developed diabetes?",
+        verbose_name="Since the last visit, has the patient developed diabetes?",
         max_length=25,
         choices=YES_NO,
     )
@@ -22,11 +23,25 @@ class FollowUp(CrfModelMixin, BaseUuidModel):
         verbose_name="If YES, when was the diagnosis of diabetes made?",
         null=True,
         blank=True,
+        help_text="Must be a date on or after clinic registration date",
     )
 
-    diabetes_rx = models.TextField(
-        verbose_name="List of diabetes treatment", null=True, blank=True,
+    diabetes_rx_started = models.CharField(
+        verbose_name="Was treatment initiated?", max_length=25, choices=YES_NO,
     )
+
+    diabetes_rx_initial_date = models.DateTimeField(
+        verbose_name="Was treatment initiated?",
+    )
+
+    diabetes_rx_initial = models.ForeignKey(
+        DiabetesTreatment,
+        verbose_name="Diabetes treatment",
+        related_name="diabetes_rx",
+        on_delete=models.PROTECT,
+    )
+
+    other_diabetes_rx_initial = edc_models.OtherCharField(null=True, blank=True)
 
     hypertension = models.CharField(
         verbose_name="Since the patient started at this clinic, have they developed hypertension?",

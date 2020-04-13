@@ -12,12 +12,14 @@ from mapitio_subject.choices import CRF_STATUS
 from .subject_visit import SubjectVisit
 
 
-class HivHistory(CrfModelMixin, edc_models.BaseUuidModel):
+class HivReview(CrfModelMixin, edc_models.BaseUuidModel):
 
     subject_visit = models.ForeignKey(SubjectVisit, on_delete=models.PROTECT)
 
     dx_date = models.DateField(
-        verbose_name="When was the diagnosis made", null=True, blank=True
+        verbose_name="When did the patient first test positive for HIV",
+        null=True,
+        blank=True,
     )
 
     initiation_date = models.DateField(
@@ -48,7 +50,6 @@ class HivHistory(CrfModelMixin, edc_models.BaseUuidModel):
             "What was the ART regimen <u>immediately before</u> the current regimen"
         ),
         related_name="prev_one_regimen",
-        default=NOT_APPLICABLE,
         help_text="This is 'previous' regimen",
         null=True,
         blank=False,
@@ -110,5 +111,5 @@ class HivHistory(CrfModelMixin, edc_models.BaseUuidModel):
     comments = models.TextField(null=True, blank=True)
 
     class Meta:
-        verbose_name = "HIV History"
-        verbose_name_plural = "HIV History"
+        verbose_name = "HIV Review"
+        verbose_name_plural = "HIV Review"
