@@ -6,7 +6,7 @@ from pathlib import Path
 
 from edc_utils import get_datetime_from_env
 
-MAPITIO_SCREENING_DISABLED = True
+MAPITIO_SCREENING_DISABLED = False
 BASE_DIR = str(Path(os.path.dirname(os.path.abspath(__file__))).parent.parent)
 ENV_DIR = str(Path(os.path.dirname(os.path.abspath(__file__))).parent.parent)
 
