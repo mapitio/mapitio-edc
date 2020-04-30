@@ -1,111 +1,74 @@
 from django.db import models
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import DATE_ESTIMATED_NA, YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
-from edc_crf.model_mixins import CrfModelMixin
 from edc_model import models as edc_models
-from mapitio_lists.models import DiabetesTreatment
-from mapitio_subject.choices import CRF_STATUS
+from edc_model.validators import date_is_future
+from edc_utils import get_utcnow
 
-from .subject_visit import SubjectVisit
+from ..choices import NOT_IN_CARE_REASONS
+from .model_mixins import CrfModelMixin, NcdModelMixin
 
 
 class FollowUp(CrfModelMixin, edc_models.BaseUuidModel):
 
-    subject_visit = models.ForeignKey(SubjectVisit, on_delete=models.PROTECT)
+    last_seen_date = models.DateField(
+        verbose_name="Date patient last seen at this clinic",
+    )
 
-    diabetes = models.CharField(
-        verbose_name="Since the last visit, has the patient developed diabetes?",
+    in_care = models.CharField(
+        verbose_name="Is the patient still receiving HIV care in this clinic?",
         max_length=25,
         choices=YES_NO,
     )
 
-    diabetes_dx_date = models.DateField(
-        verbose_name="If YES, when was the diagnosis of diabetes made?",
+    reason_not_in_care = models.CharField(
+        max_length=25,
+        choices=NOT_IN_CARE_REASONS,
         null=True,
         blank=True,
-        help_text="Must be a date on or after clinic registration date",
+        default=NOT_APPLICABLE,
     )
 
-    diabetes_rx_started = models.CharField(
-        verbose_name="Was treatment initiated?", max_length=25, choices=YES_NO,
+    reason_not_in_care_other = edc_models.OtherCharField(
+        verbose_name="If 'Other', specify other reason not in care",
     )
 
-    diabetes_rx_initial_date = models.DateTimeField(
-        verbose_name="Was treatment initiated?",
+    death_date = models.DateField(
+        verbose_name="If 'Died', provide the date of death", null=True, blank=True,
     )
 
-    diabetes_rx_initial = models.ForeignKey(
-        DiabetesTreatment,
-        verbose_name="Diabetes treatment",
-        related_name="diabetes_rx",
-        on_delete=models.PROTECT,
+    death_date_estimated = edc_models.IsDateEstimatedField(
+        verbose_name="Is the <u>date of death</u> estimated?",
+        choices=DATE_ESTIMATED_NA,
+        null=True,
+        blank=False,
+        default=NOT_APPLICABLE,
     )
 
-    other_diabetes_rx_initial = edc_models.OtherCharField(null=True, blank=True)
-
-    hypertension = models.CharField(
-        verbose_name="Since the patient started at this clinic, have they developed hypertension?",
-        max_length=25,
-        choices=YES_NO,
-    )
-
-    hypertension_dx_date = models.DateField(
-        verbose_name="If YES, when was the hypertension of diabetes made?",
+    death_cause = models.TextField(
+        verbose_name=(
+            "If 'Died', enter the cause of death as recorded in the patient notes"
+        ),
         null=True,
         blank=True,
     )
 
-    hypertension_rx = models.TextField(
-        verbose_name="List of hypertension treatment", null=True, blank=True,
-    )
-
-    stroke = models.CharField(
-        verbose_name="Stroke", max_length=25, choices=YES_NO_NA, default=NOT_APPLICABLE
-    )
-
-    stroke_dx_date = models.DateField(
-        verbose_name="If YES, date of stroke diagnosis", null=True, blank=True,
-    )
-
-    diabetic_foot = models.CharField(
-        verbose_name="Diabetic Foot",
+    has_next_appointment = models.CharField(
+        verbose_name="Has the patient been scheduled for their next apointment?",
         max_length=25,
         choices=YES_NO_NA,
+        null=True,
+        blank=True,
         default=NOT_APPLICABLE,
     )
-
-    diabetic_foot_dx_date = models.DateField(
-        verbose_name="If YES, date of diabetic foot", null=True, blank=True,
+    next_appointment_date = models.DateField(
+        verbose_name="Date of patient's next clinic appointment?",
+        default=get_utcnow,
+        validators=[date_is_future],
+        null=True,
+        blank=True,
     )
 
-    chronic_heart_failure = models.CharField(
-        verbose_name="Chronic Heart Failure",
-        max_length=25,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-    )
-
-    chronic_heart_failure_dx_date = models.DateField(
-        verbose_name="If YES, date of chronic heart failure", null=True, blank=True,
-    )
-
-    chronic_renal_failure = models.CharField(
-        verbose_name="Chronic Renal Failure",
-        max_length=25,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-    )
-
-    chronic_renal_failure_dx_date = models.DateField(
-        verbose_name="If YES, date of chronic renal failure", null=True, blank=True,
-    )
-
-    crf_status = models.CharField(
-        verbose_name="CRF status", max_length=25, choices=CRF_STATUS
-    )
-
-    comments = models.TextField(null=True, blank=True)
-
-    class Meta:
+    class Meta(CrfModelMixin.Meta):
         verbose_name = "Follow Up"
         verbose_name_plural = "Follow Ups"

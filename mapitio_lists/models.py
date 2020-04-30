@@ -13,10 +13,40 @@ class Conditions(ListModelMixin):
         verbose_name_plural = "Conditions"
 
 
-class DiabetesTreatment(ListModelMixin):
+class DiabetesMedications(ListModelMixin):
     class Meta(ListModelMixin.Meta):
-        verbose_name = "Diabetes Treatment"
-        verbose_name_plural = "Diabetes Treatment"
+        verbose_name = "Diabetes Medications"
+        verbose_name_plural = "Diabetes Medications"
+
+
+class ChestXrayFindings(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Chest X-ray Findings"
+        verbose_name_plural = "Chest X-ray Findings"
+
+
+class CholesterolMedications(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Cholesterol Medications"
+        verbose_name_plural = "Cholesterol Medications"
+
+
+class Diagnoses(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Diagnoses"
+        verbose_name_plural = "Diagnoses"
+
+
+class EchoFindings(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "ECHO Findings"
+        verbose_name_plural = "ECHO Findings"
+
+
+class EcgFindings(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "ECG Findings"
+        verbose_name_plural = "ECG Findings"
 
 
 class OffstudyReasons(ListModelMixin):
@@ -25,10 +55,10 @@ class OffstudyReasons(ListModelMixin):
         verbose_name_plural = "Offstudy Reasons"
 
 
-class HypertensionTreatment(ListModelMixin):
+class HypertensionMedications(ListModelMixin):
     class Meta(ListModelMixin.Meta):
-        verbose_name = "Hypertension Treatment"
-        verbose_name_plural = "Hypertension Treatment"
+        verbose_name = "Hypertension Medications"
+        verbose_name_plural = "Hypertension Medications"
 
 
 class VisitReasons(ListModelMixin):

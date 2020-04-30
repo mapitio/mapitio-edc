@@ -1,51 +1,39 @@
 from django.db import models
-from edc_crf.model_mixins import CrfModelMixin
-from edc_model.models.base_uuid_model import BaseUuidModel
-from mapitio_subject.choices import CRF_STATUS, CHEST_XRAY_CHOICES, ECG, ECHO
+from edc_model import models as edc_models
+from mapitio_lists.models import ChestXrayFindings, EcgFindings, EchoFindings
 
-from .subject_visit import SubjectVisit
+from .model_mixins import CrfModelMixin
 
 
-class Investigations(CrfModelMixin, BaseUuidModel):
+class Investigations(CrfModelMixin, edc_models.BaseUuidModel):
 
-    subject_visit = models.ForeignKey(SubjectVisit, on_delete=models.PROTECT)
+    chest_xray_findings = models.ManyToManyField(
+        ChestXrayFindings, verbose_name="Chest x-ray findings", blank=True,
+    )
 
-    chest_xray_finding_one = models.CharField(
-        verbose_name="Chest x-ray finding (first)",
-        max_length=50,
-        choices=CHEST_XRAY_CHOICES,
-        help_text="Choose from findings listed (you can enter a 2nd findings below",
+    chest_xray_findings_other = models.TextField(
+        verbose_name="If 'Other', chest x-ray findings",
+        max_length=500,
         null=True,
         blank=True,
     )
 
-    chest_xray_finding_two = models.CharField(
-        verbose_name="Chest x-ray finding (second)",
-        max_length=50,
-        choices=CHEST_XRAY_CHOICES,
-        help_text="Choose from findings listed",
-        null=True,
-        blank=True,
+    ecg_findings = models.ManyToManyField(
+        EcgFindings, verbose_name="ECG findings", blank=True,
     )
 
-    ecg = models.CharField(
-        verbose_name="ECG findings", max_length=50, choices=ECG, null=True, blank=True,
+    ecg_findings_other = models.TextField(
+        verbose_name="If 'Other', ECG findings", max_length=500, null=True, blank=True,
     )
 
-    echo = models.CharField(
-        verbose_name="ECHO findings",
-        max_length=50,
-        choices=ECHO,
-        null=True,
-        blank=True,
+    echo_findings = models.ManyToManyField(
+        EchoFindings, verbose_name="ECHO findings", blank=True,
     )
 
-    crf_status = models.CharField(
-        verbose_name="CRF status", max_length=25, choices=CRF_STATUS
+    echo_findings_other = models.TextField(
+        verbose_name="If 'Other', ECHO findings", max_length=500, null=True, blank=True,
     )
 
-    comments = models.TextField(null=True, blank=True)
-
-    class Meta:
+    class Meta(CrfModelMixin.Meta):
         verbose_name = "Investigations"
         verbose_name_plural = "Investigations"

@@ -13,21 +13,11 @@ navbar_item.active = False
 navbar_item.label = "Specimens"
 navbar.append_item(navbar_item)
 
-navbar.append_item(
-    [
-        item
-        for item in mapitio_dashboard_navbar.items
-        if item.name == "screened_subject"
-    ][0]
-)
-
-navbar.append_item(
-    [
-        item
-        for item in mapitio_dashboard_navbar.items
-        if item.name == "enrolled_subject"
-    ][0]
-)
+screening = [
+    item for item in mapitio_dashboard_navbar.items if item.name == "screened_subject"
+][0]
+screening.label = "Enrollment"
+navbar.append_item(screening)
 
 navbar.append_item(
     [

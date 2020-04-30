@@ -6,7 +6,6 @@ from .patterns import screening_identifier, hospital_identifier
 from .views import (
     AeListboardView,
     DeathReportListboardView,
-    EnrolmentListboardView,
     ScreeningListboardView,
     SubjectDashboardView,
     SubjectListboardView,
@@ -28,12 +27,6 @@ urlpatterns += ScreeningListboardView.urls(
     label="screening_listboard",
     identifier_label="screening_identifier",
     identifier_pattern=screening_identifier,
-)
-urlpatterns += EnrolmentListboardView.urls(
-    namespace=app_name,
-    label="enrolment_listboard",
-    identifier_label="hospital_identifier",
-    identifier_pattern=hospital_identifier,
 )
 urlpatterns += SubjectDashboardView.urls(
     namespace=app_name,

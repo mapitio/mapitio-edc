@@ -59,9 +59,9 @@ class MapitioTestCaseMixin(SiteTestCaseMixin):
                 user.groups.add(group)
         return self.client.force_login(user or self.user)
 
-    def get_subject_visit(self, visit_code=None, enrolment=None):
+    def get_subject_visit(self, visit_code=None, enrollment=None):
         visit_code = visit_code or DAY1
-        subject_identifier = enrolment.subject_identifier
+        subject_identifier = enrollment.subject_identifier
         appointment = Appointment.objects.get(
             subject_identifier=subject_identifier, visit_code=visit_code
         )

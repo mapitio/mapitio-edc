@@ -19,10 +19,10 @@ from faker import Faker
 
 fake = Faker()
 
-enrolment = Recipe(
+enrollment = Recipe(
     Enrolment,
     site=Site.objects.get_current,
-    enrolment_identifier=None,
+    enrollment_identifier=None,
     subject_identifier=None,
     report_datetime=get_utcnow(),
     first_name="OLIVER",
@@ -40,7 +40,7 @@ enrolment = Recipe(
 
 basicindicators = Recipe(BasicIndicators, crf_status=COMPLETE)
 bloodresults = Recipe(BloodResults, crf_status=COMPLETE)
-hivreview = Recipe(HivReview, crf_status=COMPLETE)
+medications = Recipe(HivReview, crf_status=COMPLETE)
 investigations = Recipe(Investigations, crf_status=COMPLETE)
 diabetesreview = Recipe(DiabetesReview, crf_status=COMPLETE)
 hypertensionreview = Recipe(HypertensionReview, crf_status=COMPLETE)

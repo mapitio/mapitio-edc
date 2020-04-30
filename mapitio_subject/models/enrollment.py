@@ -3,13 +3,15 @@ from django.core.validators import (
     MaxValueValidator,
 )
 from django.db import models
+from django_crypto_fields.fields import IdentityField
 from edc_consent.constants import HOSPITAL_NUMBER
 from edc_consent.field_mixins import IdentityFieldsMixin, PersonalFieldsMixin
-from edc_constants.choices import GENDER, YES_NO
-from edc_model.models import BaseUuidModel, HistoricalRecords
+from edc_constants.choices import GENDER, YES_NO, YES_NO_NA, YES_NO_UNKNOWN_NA
+from edc_constants.constants import COMPLETE
+from edc_model import models as edc_models
+from edc_model.validators import date_is_future, date_is_past
 from edc_screening.model_mixins import ScreeningIdentifierModelMixin
 from edc_sites.models import CurrentSiteManager, SiteModelMixin
-from edc_utils import age
 from edc_utils.date import get_utcnow
 from mapitio_screening.choices import CLINIC_CHOICES
 from mapitio_screening.constants import INTEGRATED_CLINIC
@@ -17,18 +19,18 @@ from mapitio_screening.constants import INTEGRATED_CLINIC
 from ..choices import CRF_STATUS, IDENTITY_TYPE
 
 
-class Enrolment(
+class Enrollment(
     ScreeningIdentifierModelMixin,
     IdentityFieldsMixin,
     PersonalFieldsMixin,
     SiteModelMixin,
-    BaseUuidModel,
+    edc_models.BaseUuidModel,
 ):
 
-    screening_identifier_field_name = "enrolment_identifier"
+    screening_identifier_field_name = "enrollment_identifier"
 
-    enrolment_identifier = models.CharField(
-        verbose_name="Enrolment ID",
+    enrollment_identifier = models.CharField(
+        verbose_name="Enrollment ID",
         max_length=50,
         blank=True,
         unique=True,
@@ -45,21 +47,36 @@ class Enrolment(
         verbose_name="Gender", choices=GENDER, max_length=1, null=True, blank=False,
     )
 
+    age_in_years = models.IntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(110)],
+    )
+
+    identity = IdentityField(
+        verbose_name="Hospital number", help_text="Hindu Mandal Hospital Number",
+    )
+
     identity_type = models.CharField(
         verbose_name="What type of identity number is this?",
         max_length=25,
         choices=IDENTITY_TYPE,
         default=HOSPITAL_NUMBER,
-    )
-
-    clinic_registration_datetime = models.DateTimeField(
-        verbose_name="Date patient enrolled at the clinic", default=get_utcnow,
-    )
-
-    age_in_years = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(110)],
         editable=False,
+    )
+
+    confirm_identity = IdentityField(
+        verbose_name="Confirm Hindu Mandal Hospital Number",
         null=True,
+        blank=False,
+        help_text="Retype the Hindu Mandal Hospital Number",
+    )
+
+    ctc_identifier = IdentityField(verbose_name="CTC Identifier")
+
+    confirm_ctc_identifier = IdentityField(verbose_name="Confirm CTC Identifier")
+
+    clinic_registration_date = models.DateField(
+        verbose_name="Date patient was first enrolled to this clinic",
+        validators=[date_is_past],
     )
 
     clinic_type = models.CharField(
@@ -71,7 +88,7 @@ class Enrolment(
     )
 
     crf_status = models.CharField(
-        verbose_name="CRF status", max_length=25, choices=CRF_STATUS
+        verbose_name="CRF status", max_length=25, choices=CRF_STATUS, default=COMPLETE,
     )
 
     comments = models.TextField(null=True, blank=True)
@@ -80,16 +97,11 @@ class Enrolment(
 
     objects = models.Manager()
 
-    history = HistoricalRecords()
+    history = edc_models.HistoricalRecords()
 
     def __str__(self):
         return f"{self.first_name} {self.initials}"
 
-    def save(self, *args, **kwargs):
-        if self.dob and self.report_datetime:
-            self.age_in_years = age(self.dob, self.report_datetime.date()).years
-        super().save(*args, **kwargs)
-
     class Meta:
-        verbose_name = "Enrolment"
-        verbose_name_plural = "Enrolment"
+        verbose_name = "Enrollment"
+        verbose_name_plural = "Enrollment"

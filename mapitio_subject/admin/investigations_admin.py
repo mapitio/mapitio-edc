@@ -2,6 +2,7 @@ from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_form_label.form_label_modeladmin_mixin import FormLabelModelAdminMixin
 from edc_model_admin import SimpleHistoryAdmin
+from mapitio_subject.admin.fieldsets import comment_fieldset_tuple
 
 from ..admin_site import mapitio_subject_admin
 from ..forms import InvestigationsForm
@@ -18,24 +19,17 @@ class InvestigationsAdmin(
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            "HIV History",
-            {
-                "fields": (
-                    "chest_xray_finding_one",
-                    "chest_xray_finding_two",
-                    "ecg",
-                    "echo",
-                    "crf_status",
-                    "comments",
-                ),
-            },
+            "Chest X-ray",
+            {"fields": ("chest_xray_findings", "chest_xray_findings_other",)},
         ),
+        ("ECG", {"fields": ("ecg_findings", "ecg_findings_other",)},),
+        ("ECHO", {"fields": ("echo_findings", "echo_findings_other",)},),
+        comment_fieldset_tuple,
         audit_fieldset_tuple,
     )
 
+    filter_horizontal = ["chest_xray_findings", "ecg_findings", "echo_findings"]
+
     radio_fields = {
-        "chest_xray_finding_one": admin.VERTICAL,
-        "chest_xray_finding_two": admin.VERTICAL,
-        "ecg": admin.VERTICAL,
-        "echo": admin.VERTICAL,
+        "crf_status": admin.VERTICAL,
     }

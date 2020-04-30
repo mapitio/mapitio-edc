@@ -22,59 +22,59 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
     post_url_on_delete_name = "screening_listboard_url"
     subject_listboard_url_name = "screening_listboard_url"
 
-    additional_instructions = (
-        "Patients must meet ALL of the inclusion criteria and NONE of the "
-        "exclusion criteria in order to proceed to the final screening stage"
-    )
+    additional_instructions = ""
 
     fieldsets = (
         [
             None,
+            {"fields": ("report_datetime", "first_name", "last_name", "initials",),},
+        ],
+        [
+            "Demographics",
+            {"fields": ("age_in_years", "dob", "is_dob_estimated", "gender",)},
+        ],
+        [
+            "Identity",
             {
                 "fields": (
-                    "screening_consent",
-                    "report_datetime",
-                    "clinic_type",
-                    "selection_method",
-                ),
+                    "hospital_identifier",
+                    "confirm_hospital_identifier",
+                    "ctc_identifier",
+                    "confirm_ctc_identifier",
+                )
             },
         ],
-        ["Demographics", {"fields": ("initials", "gender", "age_in_years")}],
+        ["Enrollment", {"fields": ("clinic_registration_date", "last_clinic_date")},],
         audit_fieldset_tuple,
     )
 
     list_display = (
-        "screening_identifier",
-        "eligiblity_status",
-        "demographics",
-        "reasons",
-        "report_datetime",
+        "hospital_identifier",
+        "clinic_registration_date",
+        "age_in_years",
+        "gender",
+        "ctc_identifier",
         "user_created",
         "created",
     )
 
     list_filter = (
         "report_datetime",
+        "clinic_registration_date",
         "gender",
-        "eligible",
-        "consented",
-        "refused",
-        "eligible",
-        "clinic_type",
     )
 
     search_fields = (
-        "screening_identifier",
+        "hospital_identifier",
         "subject_identifier",
+        "ctc_identifier",
         "initials",
         "reasons_ineligible",
     )
 
     radio_fields = {
-        "clinic_type": admin.VERTICAL,
         "gender": admin.VERTICAL,
-        "screening_consent": admin.VERTICAL,
-        "selection_method": admin.VERTICAL,
+        "is_dob_estimated": admin.VERTICAL,
     }
 
     def post_url_on_delete_kwargs(self, request, obj):
@@ -100,7 +100,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         except NoReverseMatch:
             url = reverse(url_names.get("screening_listboard_url"), kwargs={})
             context = dict(
-                title=_("Go to screening listboard"),
+                title=_("Go to enrollment listboard"),
                 url=f"{url}?q={obj.screening_identifier}",
                 label=label,
             )

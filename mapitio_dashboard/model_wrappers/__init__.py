@@ -4,8 +4,8 @@ from .subject_screening_model_wrapper import (
     SubjectScreeningModelWrapper,
     SubjectConsentModelWrapper,
 )
-from .enrolment_model_wrapper import (
-    EnrolmentModelWrapper,
-    EnrolmentConsentModelWrapper,
+from .enrollment_model_wrapper import (
+    EnrollmentModelWrapper,
+    EnrollmentConsentModelWrapper,
 )
 from .subject_refusal_model_wrapper import SubjectRefusalModelWrapper

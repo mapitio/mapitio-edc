@@ -21,18 +21,6 @@ navbar.append_item(
 
 navbar.append_item(
     NavbarItem(
-        name="enrolled_subject",
-        title="Enrolment",
-        label="Enrolment",
-        fa_icon="fas fa-user-plus",
-        codename="edc_navbar.nav_enrolment_section",
-        url_name="enrolment_listboard_url",
-        no_url_namespace=no_url_namespace,
-    )
-)
-
-navbar.append_item(
-    NavbarItem(
         name="consented_subject",
         title="Subjects",
         label="Subjects",

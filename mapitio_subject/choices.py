@@ -1,26 +1,32 @@
 from edc_consent.constants import HOSPITAL_NUMBER, NATIONAL_IDENTIFIER
 from edc_constants.constants import (
+    COMPLETE,
+    DEAD,
     FASTING,
+    HELD,
+    INCOMPLETE,
+    INITIAL,
+    LOST_TO_FOLLOWUP,
+    MODIFIED,
     NON_FASTING,
+    NONE,
     NORMAL,
     OTHER,
     HOSPITAL_NOTES,
     NOT_APPLICABLE,
+    STOPPED,
 )
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, MISSED_VISIT
 
-CRF_STATUS = (
-    ("incomplete", "Incomplete (some data pending)"),
-    ("complete", "Complete"),
-)
-FASTING_CHOICES = ((FASTING, "Fasting"), (NON_FASTING, "Non-fasting"))
+from .constants import DIABETES, HYPERTENSION
 
-CHEST_XRAY_CHOICES = (
-    (NORMAL, "Normal"),
-    ("pneumonia", "Pneumonia"),
-    ("pcp", "PCP"),
-    ("cardiomegaly", "Cardiomegaly"),
-    ("pleural_effusion", "Pleural effusion"),
+CRF_STATUS = (
+    (INCOMPLETE, "Incomplete (some data pending)"),
+    (COMPLETE, "Complete"),
+)
+FASTING_CHOICES = (
+    (FASTING, "Fasting"),
+    (NON_FASTING, "Non-fasting"),
 )
 
 ECG = (
@@ -56,6 +62,14 @@ INFO_SOURCE = (
     (OTHER, "Other"),
 )
 
+NOT_IN_CARE_REASONS = (
+    ("transferred", "Transferred"),
+    (LOST_TO_FOLLOWUP, "Lost to followup"),
+    (DEAD, "Died"),
+    (OTHER, "Other, please specify..."),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
 VISIT_UNSCHEDULED_REASON = (
     ("patient_unwell_outpatient", "Patient unwell (outpatient)"),
     ("patient_hospitalised", "Patient hospitalised"),
@@ -69,4 +83,25 @@ VISIT_REASON = (
     (SCHEDULED, "Scheduled visit"),
     (UNSCHEDULED, "Unscheduled visit"),
     (MISSED_VISIT, "Missed visit"),
+)
+
+NEW_DIAGNOSES = (
+    (NONE, "No new diagnoses to report"),
+    (DIABETES, "Diabetes"),
+    (HYPERTENSION, "Hypertension"),
+    (OTHER, "Other reportable diagnosis ..."),
+)
+
+MEDICATION_CHANGES = (
+    (NONE, "No medication changes to report"),
+    (DIABETES, "Diabetes medication has changed"),
+    (HYPERTENSION, "Hypertension medication has changed"),
+    (OTHER, "Other reportable medications have changed ..."),
+)
+
+MEDICATION_CODES = (
+    (INITIAL, "Initial"),
+    (MODIFIED, "Modified"),
+    (HELD, "Held"),
+    (STOPPED, "Stopped"),
 )

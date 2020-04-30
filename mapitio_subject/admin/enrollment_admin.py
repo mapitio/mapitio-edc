@@ -4,30 +4,30 @@ from edc_model_admin import SimpleHistoryAdmin
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 
 from ..admin_site import mapitio_subject_admin
-from ..forms import EnrolmentForm
-from ..models import Enrolment
+from ..forms import EnrollmentForm
+from ..models import Enrollment
 
 
-@admin.register(Enrolment, site=mapitio_subject_admin)
-class EnrolmentAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
-    form = EnrolmentForm
+@admin.register(Enrollment, site=mapitio_subject_admin)
+class EnrollmentAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
+    form = EnrollmentForm
 
     fieldsets = (
         (
-            "Enrolment",
+            "Enrollment",
             {
                 "fields": (
                     "report_datetime",
                     "first_name",
                     "last_name",
                     "initials",
+                    "age_in_years",
                     "dob",
                     "is_dob_estimated",
                     "gender",
                     "identity",
-                    "identity_type",
                     "confirm_identity",
-                    "clinic_registration_datetime",
+                    "clinic_registration_date",
                 ),
             },
         ),

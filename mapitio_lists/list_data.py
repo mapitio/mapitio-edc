@@ -1,5 +1,5 @@
 from django.conf import settings
-from edc_constants.constants import OTHER, UNKNOWN, DEAD, NONE, NOT_APPLICABLE
+from edc_constants.constants import NORMAL, OTHER, UNKNOWN, DEAD, NONE, NOT_APPLICABLE
 from edc_list_data import PreloadData
 from mapitio_prn.constants import (
     WITHDRAWAL,
@@ -9,6 +9,39 @@ from mapitio_prn.constants import (
 )
 
 list_data = {
+    "mapitio_lists.echofindings": [
+        (NORMAL, "Normal"),
+        ("left_vetricular_size", "Left ventricular size and function (abnormal)"),
+        ("right_ventricular_size", "Right ventricular size and function (abnormal)"),
+        ("left_atrium_size", "Left atrium size and function (abnormal)"),
+        ("right_atrium_size", "Right atrium size and function (abnormal)"),
+        ("valvular_function", "Valvular function (abnormal)"),
+        ("pulmonary_hypertension", "Pulmonary hypertension (present)"),
+        ("pericardial_effusions", "Pericardial effusions (present)"),
+        ("aorta", "Aorta (abnormal)"),
+        (OTHER, "Other finding(s)"),
+    ],
+    "mapitio_lists.ecgfindings": [
+        (NORMAL, "Normal"),
+        ("left_ventricular_hypertrophy", "Left ventricular hypertrophy"),
+        ("ischaemic_heart_disease", "Ischaemic heart disease"),
+        ("heart_arrhythmias", "Heart arrhythmias"),
+        (OTHER, "Other finding(s)"),
+    ],
+    "mapitio_lists.chestxrayfindings": [
+        (NORMAL, "Normal"),
+        ("cardiomegaly", "Cardiomegaly"),
+        ("pcp", "PCP"),
+        ("pleural_effusion", "Pleural effusion"),
+        ("pneumonia", "Pneumonia"),
+        (OTHER, "Other finding(s)"),
+    ],
+    "mapitio_lists.cholesterolmedications": [
+        ("simvastatin", "Simvastatin"),
+        ("atorvastatin", "Atorvastatin"),
+        (NOT_APPLICABLE, "Not applicable"),
+        (OTHER, "Other treatment (specify below)"),
+    ],
     "mapitio_lists.conditions": [
         ("hypertension", "Patient has high blood pressure (Hypertension)"),
         ("diabetes", "Patient has high blood sugar (Diabetes)"),
@@ -34,7 +67,7 @@ list_data = {
         ),
         (OTHER, "Other reason (specify below)",),
     ],
-    "mapitio_lists.hypertensiontreatment": [
+    "mapitio_lists.hypertensionmedications": [
         ("bendroflumethiazide", "Bendroflumethiazide"),
         ("captopril", "Captopril"),
         ("enalapril", "Enalapril"),
@@ -70,7 +103,7 @@ list_data = {
         ("unwell", "Feeling unwell (self referral)"),
         ("unscheduled", "Unscheduled"),
     ],
-    "mapitio_lists.diabetestreatment": [
+    "mapitio_lists.diabetesmedications": [
         ("metformin_b", "Metformin (B)"),
         ("glibenclamide_s", "Glibenclamide (S)"),
         ("glimepiride_s", "Glimepiride (S)"),

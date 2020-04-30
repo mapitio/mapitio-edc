@@ -9,6 +9,7 @@ from edc_sites.models import CurrentSiteManager as BaseCurrentSiteManager
 from edc_sites.models import SiteModelMixin
 from edc_visit_tracking.managers import VisitModelManager
 from edc_visit_tracking.model_mixins import VisitModelMixin
+from mapitio_screening.models import SubjectScreening
 
 from ..choices import INFO_SOURCE, VISIT_REASON, VISIT_UNSCHEDULED_REASON
 
@@ -56,6 +57,18 @@ class SubjectVisit(
     objects = VisitModelManager()
 
     history = HistoricalRecords()
+
+    def __str__(self):
+        return (
+            f"{self.subject_identifier} {self.visit_code}.{self.visit_code_sequence} "
+            f"(HOSP_ID:{self.hospital_identifier})"
+        )
+
+    @property
+    def hospital_identifier(self):
+        return SubjectScreening.objects.get(
+            subject_identifier=self.subject_identifier
+        ).hospital_identifier
 
     class Meta(VisitModelMixin.Meta):
         pass

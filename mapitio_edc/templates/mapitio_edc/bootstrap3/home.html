@@ -33,10 +33,7 @@
 
       <div class="list-group">
         {% if perms.edc_dashboard.view_screening_listboard %}
-          <a id="home_list_group_screening_listboard" href="{% url screening_listboard_url|default:'screening_listboard_url_cannot_be_none' %}" class="list-group-item"><i class="fas fa-user-plus fa-lg fa-fw"></i>&nbsp;&nbsp;&nbsp;Screening</a>
-        {% endif %}
-        {% if perms.edc_dashboard.view_enrolment_listboard %}
-          <a id="home_list_group_enrolment_listboard" href="{% url enrolment_listboard_url|default:'enrolment_listboard_url_cannot_be_none' %}" class="list-group-item"><i class="fas fa-user-plus fa-lg fa-fw"></i>&nbsp;&nbsp;&nbsp;Enrolment</a>
+          <a id="home_list_group_screening_listboard" href="{% url screening_listboard_url|default:'screening_listboard_url_cannot_be_none' %}" class="list-group-item"><i class="fas fa-user-plus fa-lg fa-fw"></i>&nbsp;&nbsp;&nbsp;Enrollment</a>
         {% endif %}
         {% if perms.edc_dashboard.view_subject_listboard %}
           <a id="home_list_group_subject_listboard" href="{% url subject_listboard_url|default:'subject_listboard_url_cannot_be_none' %}" class="list-group-item"><i class="fas fa-user-circle fa-lg fa-fw"></i>&nbsp;&nbsp;&nbsp;Subjects</a>

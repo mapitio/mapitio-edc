@@ -16,11 +16,11 @@ register = template.Library()
     f"buttons/screening_button.html",
     takes_context=True,
 )
-def enrolment_button(context, model_wrapper):
-    title = "Edit subject's enrolment form"
+def enrollment_button(context, model_wrapper):
+    title = "Edit subject's enrollment form"
     return dict(
         perms=context["perms"],
-        enrolment_identifier=model_wrapper.object.enrolment_identifier,
+        enrollment_identifier=model_wrapper.object.enrollment_identifier,
         href=model_wrapper.href,
         title=title,
         YES=YES,
