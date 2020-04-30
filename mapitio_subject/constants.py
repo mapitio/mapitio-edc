@@ -1,0 +1,2 @@
+DIABETES = "diabetes"
+HYPERTENSION = "hypertension"
