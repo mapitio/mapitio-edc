@@ -20,11 +20,12 @@
     <!-- begin results header -->
     <th>#</th>
     <th></th>
-    <th>Hospital ID</th>
+    <th>HMS</th>
     <th>Initials</th>
     <th>Age/Gender</th>
-    <th>Conditions</th>
-    <th>Study ID</th>
+    <th>File</th>
+    <th>CTC</th>
+    <th>Study</th>
     <th>User</th>
     <th>Modified</th>
     <th>Host</th>
@@ -54,6 +55,8 @@
     <td>{{ result.hospital_identifier }} </td>
     <td nowrap>{{ result.initials }}</td>
     <td nowrap>{{ result.age_in_years }} yrs {{ result.gender }}</td>
+    <td nowrap>{{ result.file_number }}</td>
+    <td nowrap>{{ result.ctc_identifier }}</td>
     <td nowrap>{% if result.consent %}{{ result.consent.subject_identifier }}{% else %} -- {% endif %}</td>
     <td nowrap>{{ result.user_created }}</td>
     <td nowrap>{{ result.object.modified|date:"SHORT_DATETIME_FORMAT" }}</td>  
