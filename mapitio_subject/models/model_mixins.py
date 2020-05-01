@@ -253,7 +253,6 @@ class BiomedicalModelMixin(models.Model):
         ),
         null=True,
         blank=True,
-        default=MILLIGRAMS_PER_DECILITER,
     )
 
     serum_uric_acid_date = models.DateField(
@@ -360,7 +359,6 @@ class BiomedicalModelMixin(models.Model):
             (GRAMS_PER_DECILITER, GRAMS_PER_DECILITER),
             (GRAMS_PER_LITER, GRAMS_PER_LITER),
         ),
-        default=GRAMS_PER_LITER,
         null=True,
         blank=True,
     )
