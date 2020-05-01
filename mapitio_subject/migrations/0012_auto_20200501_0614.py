@@ -7,18 +7,24 @@ import edc_model.validators.date
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mapitio_subject', '0011_auto_20200501_0607'),
+        ("mapitio_subject", "0011_auto_20200501_0607"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='deathreport',
-            name='death_date',
-            field=models.DateField(validators=[edc_model.validators.date.date_is_past], verbose_name='Date of death'),
+            model_name="deathreport",
+            name="death_date",
+            field=models.DateField(
+                validators=[edc_model.validators.date.date_is_past],
+                verbose_name="Date of death",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicaldeathreport',
-            name='death_date',
-            field=models.DateField(validators=[edc_model.validators.date.date_is_past], verbose_name='Date of death'),
+            model_name="historicaldeathreport",
+            name="death_date",
+            field=models.DateField(
+                validators=[edc_model.validators.date.date_is_past],
+                verbose_name="Date of death",
+            ),
         ),
     ]
