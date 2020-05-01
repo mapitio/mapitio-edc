@@ -15,7 +15,6 @@ class Migration(migrations.Migration):
             model_name="historicalsubjectscreening",
             name="file_number",
             field=models.CharField(
-                db_index=True,
                 default="0",
                 help_text="Patient file number from Hindu Mandal Hospital",
                 max_length=25,
@@ -30,7 +29,6 @@ class Migration(migrations.Migration):
                 default="0",
                 help_text="Patient file number from Hindu Mandal Hospital",
                 max_length=25,
-                unique=True,
                 verbose_name="Patient File number",
             ),
             preserve_default=False,
