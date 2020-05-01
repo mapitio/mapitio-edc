@@ -20,16 +20,12 @@ class FollowUpAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryA
             "Details",
             {
                 "fields": (
-                    "last_seen_date",
+                    "alive",
                     "in_care",
                     "reason_not_in_care",
                     "reason_not_in_care_other",
                 ),
             },
-        ),
-        (
-            "Survival Status",
-            {"fields": ("death_date", "death_date_estimated", "death_cause"),},
         ),
         (
             "Next appointment",
@@ -40,9 +36,9 @@ class FollowUpAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryA
     )
 
     radio_fields = {
+        "alive": admin.VERTICAL,
         "in_care": admin.VERTICAL,
         "reason_not_in_care": admin.VERTICAL,
-        "death_date_estimated": admin.VERTICAL,
         "has_next_appointment": admin.VERTICAL,
         "crf_status": admin.VERTICAL,
     }

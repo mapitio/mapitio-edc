@@ -65,9 +65,7 @@ INFO_SOURCE = (
 NOT_IN_CARE_REASONS = (
     ("transferred", "Transferred"),
     (LOST_TO_FOLLOWUP, "Lost to followup"),
-    (DEAD, "Died"),
     (OTHER, "Other, please specify..."),
-    (NOT_APPLICABLE, "Not applicable"),
 )
 
 VISIT_UNSCHEDULED_REASON = (

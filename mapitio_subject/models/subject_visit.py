@@ -61,7 +61,7 @@ class SubjectVisit(
     def __str__(self):
         return (
             f"{self.subject_identifier} {self.visit_code}.{self.visit_code_sequence} "
-            f"(HOSP_ID:{self.hospital_identifier})"
+            f"(HMS_ID:{self.hospital_identifier})"
         )
 
     @property

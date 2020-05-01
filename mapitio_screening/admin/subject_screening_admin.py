@@ -44,6 +44,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
                 )
             },
         ],
+        ["Patient File", {"fields": ("file_number",)}],
         ["Enrollment", {"fields": ("clinic_registration_date", "last_clinic_date")},],
         audit_fieldset_tuple,
     )

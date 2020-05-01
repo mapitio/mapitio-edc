@@ -1,6 +1,8 @@
+from datetime import date
 from django import forms
+from django.conf import settings
 from edc_form_validators import FormValidator
-from edc_constants.constants import YES, NO
+from edc_utils import convert_php_dateformat
 
 
 class SubjectScreeningFormValidator(FormValidator):
@@ -41,16 +43,20 @@ class SubjectScreeningFormValidator(FormValidator):
             ):
                 raise forms.ValidationError({"confirm_ctc_identifier": "Mismatch"})
 
+        # clinic_registration_date
+        min_year = 2010
+        max_year = 2014
         if self.cleaned_data.get("clinic_registration_date"):
-            if self.cleaned_data.get("clinic_registration_date").year < 2010:
+            if self.cleaned_data.get("clinic_registration_date").year < min_year:
                 raise forms.ValidationError(
-                    {"clinic_registration_date": "Cannot be before 2010"}
+                    {"clinic_registration_date": f"Cannot be before {min_year}"}
                 )
-            if self.cleaned_data.get("clinic_registration_date").year > 2014:
+            if self.cleaned_data.get("clinic_registration_date").year > max_year:
                 raise forms.ValidationError(
-                    {"clinic_registration_date": "Cannot be after 2014"}
+                    {"clinic_registration_date": f"Cannot be after {max_year}"}
                 )
 
+        # last_clinic_date
         if self.cleaned_data.get("clinic_registration_date") and self.cleaned_data.get(
             "last_clinic_date"
         ):
