@@ -10,7 +10,6 @@ from edc_model_admin import SimpleHistoryAdmin
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 
 from ..admin_site import mapitio_screening_admin
-from ..eligibility import format_reasons_ineligible
 from ..forms import SubjectScreeningForm
 from ..models import SubjectScreening
 
@@ -50,11 +49,13 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
     )
 
     list_display = (
-        "hospital_identifier",
-        "clinic_registration_date",
-        "age_in_years",
-        "gender",
-        "ctc_identifier",
+        "hms",
+        "demographics",
+        "dashboard",
+        "file",
+        "ctc",
+        "enrolled",
+        "last_seen",
         "user_created",
         "created",
     )
@@ -62,21 +63,37 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
     list_filter = (
         "report_datetime",
         "clinic_registration_date",
+        "last_clinic_date",
         "gender",
     )
 
     search_fields = (
         "hospital_identifier",
-        "subject_identifier",
+        "file_number",
         "ctc_identifier",
+        "subject_identifier",
         "initials",
-        "reasons_ineligible",
     )
 
     radio_fields = {
         "gender": admin.VERTICAL,
         "is_dob_estimated": admin.VERTICAL,
     }
+
+    def hms(self, obj=None):
+        return obj.hospital_identifier
+
+    def file(self, obj=None):
+        return obj.file_number
+
+    def ctc(self, obj=None):
+        return obj.ctc_identifier
+
+    def enrolled(self, obj=None):
+        return obj.clinic_registration_date
+
+    def last_seen(self, obj=None):
+        return obj.last_clinic_date
 
     def post_url_on_delete_kwargs(self, request, obj):
         return {}
@@ -85,12 +102,6 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         return mark_safe(
             f"{obj.get_gender_display()} {obj.age_in_years}yrs {obj.initials.upper()}"
         )
-
-    def reasons(self, obj=None):
-        return format_reasons_ineligible(obj.reasons_ineligible)
-
-    def eligiblity_status(self, obj=None):
-        return "Eligible" if obj.eligible else "Ineligible"
 
     def dashboard(self, obj=None, label=None):
         try:

@@ -2,6 +2,6 @@ include AUTHORS CHANGES LICENSE VERSION
 include MANIFEST.in
 include *.rst
 include *.txt
-recursive-include mapitio_edc/templates *
-recursive-include mapitio_edc/static *
+recursive-include mapitio_*/templates *
+recursive-include mapitio_*/static *
 recursive-include label_templates *
