@@ -2,11 +2,11 @@ from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_form_label.form_label_modeladmin_mixin import FormLabelModelAdminMixin
 from edc_model_admin import SimpleHistoryAdmin
-from mapitio_subject.admin.fieldsets import comment_fieldset_tuple
 
 from ..admin_site import mapitio_subject_admin
 from ..forms import ComplicationsForm
 from ..models import Complications
+from .fieldsets import comment_fieldset_tuple
 from .modeladmin import CrfModelAdminMixin
 
 
@@ -36,6 +36,8 @@ class ComplicationsAdmin(
                     "peripheral_vascular_dx_date",
                     "peripheral_neuropathy",
                     "peripheral_neuropathy_dx_date",
+                    "complications",
+                    "complications_other",
                 ),
             },
         ),
@@ -51,5 +53,6 @@ class ComplicationsAdmin(
         "peripheral_vascular": admin.VERTICAL,
         "peripheral_neuropathy": admin.VERTICAL,
         "chronic_renal_failure": admin.VERTICAL,
+        "complications": admin.VERTICAL,
         "crf_status": admin.VERTICAL,
     }

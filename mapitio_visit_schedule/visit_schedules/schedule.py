@@ -16,7 +16,7 @@ from edc_visit_schedule.constants import (
     MONTH10,
 )
 
-from .crfs import crfs_d1
+from .crfs import crfs_d1, crfs_prn
 from .requisitions import requisitions_d1
 
 default_requisitions = None
@@ -27,7 +27,7 @@ class Visit(BaseVisit):
         self,
         crfs_unscheduled=None,
         requisitions_unscheduled=None,
-        crfs_prn=None,
+        crfs_prn=crfs_prn,
         requisitions_prn=None,
         allow_unscheduled=None,
         **kwargs

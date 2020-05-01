@@ -1,7 +1,6 @@
 from .biomedical_followup import BiomedicalFollowup
 from .biomedical_history import BiomedicalHistory
 from .complications import Complications
-from .enrollment import Enrollment
 from .follow_up import FollowUp
 from .hiv_history import HivHistory
 from .indicators import Indicators
@@ -10,3 +9,4 @@ from .ncd_followup import NcdFollowup
 from .ncd_history import NcdHistory
 from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
+from .death_report import DeathReport

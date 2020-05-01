@@ -1,5 +1,11 @@
 from django.conf import settings
-from edc_constants.constants import NORMAL, OTHER, UNKNOWN, DEAD, NONE, NOT_APPLICABLE
+from edc_constants.constants import (
+    NORMAL,
+    NOT_DONE,
+    OTHER,
+    DEAD,
+    NOT_APPLICABLE,
+)
 from edc_list_data import PreloadData
 from mapitio_prn.constants import (
     WITHDRAWAL,
@@ -19,14 +25,16 @@ list_data = {
         ("pulmonary_hypertension", "Pulmonary hypertension (present)"),
         ("pericardial_effusions", "Pericardial effusions (present)"),
         ("aorta", "Aorta (abnormal)"),
-        (OTHER, "Other finding(s)"),
+        (NOT_DONE, "Not done ---"),
+        (OTHER, "Other finding(s) ..."),
     ],
     "mapitio_lists.ecgfindings": [
         (NORMAL, "Normal"),
         ("left_ventricular_hypertrophy", "Left ventricular hypertrophy"),
         ("ischaemic_heart_disease", "Ischaemic heart disease"),
         ("heart_arrhythmias", "Heart arrhythmias"),
-        (OTHER, "Other finding(s)"),
+        (NOT_DONE, "Not done ---"),
+        (OTHER, "Other finding(s) ..."),
     ],
     "mapitio_lists.chestxrayfindings": [
         (NORMAL, "Normal"),
@@ -34,12 +42,13 @@ list_data = {
         ("pcp", "PCP"),
         ("pleural_effusion", "Pleural effusion"),
         ("pneumonia", "Pneumonia"),
-        (OTHER, "Other finding(s)"),
+        (NOT_DONE, "Not done ---"),
+        (OTHER, "Other finding(s) ..."),
     ],
     "mapitio_lists.cholesterolmedications": [
         ("simvastatin", "Simvastatin"),
         ("atorvastatin", "Atorvastatin"),
-        (NOT_APPLICABLE, "Not applicable"),
+        (NOT_APPLICABLE, "Not applicable  ---"),
         (OTHER, "Other treatment (specify below)"),
     ],
     "mapitio_lists.conditions": [
@@ -65,7 +74,7 @@ list_data = {
             "Other condition that justifies the discontinuation of "
             "treatment in the clinician’s opinion (specify below)",
         ),
-        (OTHER, "Other reason (specify below)",),
+        (OTHER, "Other reason (specify below) ...",),
     ],
     "mapitio_lists.hypertensionmedications": [
         ("bendroflumethiazide", "Bendroflumethiazide"),
@@ -81,8 +90,8 @@ list_data = {
         ("carvedilol", "Carvedilol"),
         ("valsartan", "Valsartan"),
         ("simvastatin", "Simvastatin"),
-        (NOT_APPLICABLE, "Not applicable"),
-        (OTHER, "Other treatment (specify below)"),
+        (NOT_APPLICABLE, "Not applicable  ---"),
+        (OTHER, "Other treatment (specify below) ..."),
     ],
     "mapitio_lists.arvregimens": [
         ("TDF_3TC_ATV_r", "TDF + 3TC + ATV/r"),
@@ -94,8 +103,8 @@ list_data = {
         ("ABC_3TC_LPV_r", "ABC + 3TC + LPV/r"),
         ("TDF_FTC_LPV_r", "TDF + FTC + LPV/r"),
         ("DTG_ABC/3TC_ATV_r", "DTG + (ABC/3TC) + ATV/r"),
-        (NOT_APPLICABLE, "Not applicable"),
-        (OTHER, "Other, specify"),
+        (NOT_APPLICABLE, "Not applicable  ---"),
+        (OTHER, "Other, specify ..."),
     ],
     "mapitio_lists.visitreasons": [
         ("drug_refill", "Drug Refill"),
@@ -110,8 +119,8 @@ list_data = {
         ("gliclazide_s", "Gliclazide (S)"),
         ("glipizide_s", "Glipizide (S)"),
         ("insulin", "Insulin"),
-        (NOT_APPLICABLE, "Not applicable"),
-        (OTHER, "Other, specify"),
+        (NOT_APPLICABLE, "Not applicable  ---"),
+        (OTHER, "Other, specify ..."),
     ],
 }
 

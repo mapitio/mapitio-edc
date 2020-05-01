@@ -1,6 +1,7 @@
 from .biomedical_followup_admin import BiomedicalFollowupAdmin
 from .biomedical_history_admin import BiomedicalHistoryAdmin
 from .complications_admin import ComplicationsAdmin
+from .death_report_admin import DeathReportAdmin
 from .follow_up_admin import FollowUpAdmin
 from .hiv_history_admin import HivHistoryAdmin
 from .indicators_admin import IndicatorsAdmin

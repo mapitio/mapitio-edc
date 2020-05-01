@@ -6,6 +6,7 @@ from django.core.validators import (
     MaxLengthValidator,
 )
 from django.db import models
+from django.utils.safestring import mark_safe
 from django_crypto_fields.fields import EncryptedCharField
 from edc_consent.field_mixins import PersonalFieldsMixin
 from edc_constants.choices import GENDER, YES_NO_NA
@@ -13,12 +14,11 @@ from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_model import models as edc_models
 from edc_model.validators import date_is_past
+from edc_model.validators.date import date_is_not_now
 from edc_screening.model_mixins import (
     ScreeningFieldsModeMixin,
     ScreeningMethodsModeMixin,
-    ScreeningModelMixin,
 )
-from edc_screening.screening_identifier import ScreeningIdentifier
 from edc_search.model_mixins import SearchSlugModelMixin
 from edc_sites.models import CurrentSiteManager, SiteModelMixin
 from edc_utils import get_utcnow
@@ -80,16 +80,16 @@ class SubjectScreening(
     )
 
     hospital_identifier = models.CharField(
-        verbose_name="Hospital number",
+        verbose_name="HMS Identifier",
         max_length=25,
-        help_text="Hindu Mandal Hospital Number",
+        help_text="Hindu Mandal Hospital Identifier",
         unique=True,
     )
 
     confirm_hospital_identifier = models.CharField(
-        verbose_name="Confirm Hospital Number",
+        verbose_name="Confirm HMS Identifier",
         max_length=25,
-        help_text="Retype the Hindu Mandal Hospital Number",
+        help_text="Retype the Hindu Mandal Hospital Identifier",
     )
 
     ctc_identifier = models.CharField(
@@ -104,14 +104,22 @@ class SubjectScreening(
         verbose_name="Confirm CTC Identifier", max_length=25, null=True, blank=True,
     )
 
+    file_number = models.CharField(
+        verbose_name="Patient File number",
+        max_length=25,
+        help_text=mark_safe("Patient file number from Hindu Mandal Hospital"),
+        unique=True,
+    )
+
     clinic_registration_date = models.DateField(
         verbose_name="Date patient was <u>first</u> enrolled to this clinic",
-        validators=[date_is_past],
+        validators=[date_is_past, date_is_not_now],
     )
 
     last_clinic_date = models.DateField(
-        verbose_name="Date patient was <u>last</u>> seen at this clinic",
-        validators=[date_is_past],
+        verbose_name="Date patient was <u>last</u> seen at this clinic",
+        validators=[date_is_past, date_is_not_now],
+        help_text="Date last seen according to information on the patient chart.",
     )
 
     # not used, keep for compatability
