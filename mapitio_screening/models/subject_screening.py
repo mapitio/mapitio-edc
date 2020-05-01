@@ -108,7 +108,7 @@ class SubjectScreening(
         verbose_name="Patient File number",
         max_length=25,
         help_text=mark_safe("Patient file number from Hindu Mandal Hospital"),
-        # unique=True,
+        unique=True,
     )
 
     clinic_registration_date = models.DateField(
