@@ -1,6 +1,7 @@
-from edc_auth import screening  # noqa
+from copy import copy
+from edc_auth import screening as default
 
-screening += [
+default += [
     "mapitio_screening.add_subjectscreening",
     "mapitio_screening.add_subjectrefusal",
     "mapitio_screening.change_subjectscreening",
@@ -12,3 +13,5 @@ screening += [
     "mapitio_screening.view_subjectscreening",
     "mapitio_screening.view_subjectrefusal",
 ]
+
+screening = copy(default)

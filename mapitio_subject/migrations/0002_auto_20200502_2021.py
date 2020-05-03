@@ -6,48 +6,96 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mapitio_subject', '0001_initial'),
+        ("mapitio_subject", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='biomedicalfollowup',
-            name='albumin_units',
-            field=models.CharField(blank=True, choices=[('g/dL', 'g/dL'), ('g/L', 'g/L')], max_length=15, null=True, verbose_name='<i>Serum Albumin units</i>'),
+            model_name="biomedicalfollowup",
+            name="albumin_units",
+            field=models.CharField(
+                blank=True,
+                choices=[("g/dL", "g/dL"), ("g/L", "g/L")],
+                max_length=15,
+                null=True,
+                verbose_name="<i>Serum Albumin units</i>",
+            ),
         ),
         migrations.AlterField(
-            model_name='biomedicalfollowup',
-            name='serum_uric_acid_units',
-            field=models.CharField(blank=True, choices=[('mg/dL', 'mg/dL'), ('mmol/L', 'mmol/L')], max_length=15, null=True, verbose_name='<i>Serum uric acid units</i>'),
+            model_name="biomedicalfollowup",
+            name="serum_uric_acid_units",
+            field=models.CharField(
+                blank=True,
+                choices=[("mg/dL", "mg/dL"), ("mmol/L", "mmol/L")],
+                max_length=15,
+                null=True,
+                verbose_name="<i>Serum uric acid units</i>",
+            ),
         ),
         migrations.AlterField(
-            model_name='biomedicalhistory',
-            name='albumin_units',
-            field=models.CharField(blank=True, choices=[('g/dL', 'g/dL'), ('g/L', 'g/L')], max_length=15, null=True, verbose_name='<i>Serum Albumin units</i>'),
+            model_name="biomedicalhistory",
+            name="albumin_units",
+            field=models.CharField(
+                blank=True,
+                choices=[("g/dL", "g/dL"), ("g/L", "g/L")],
+                max_length=15,
+                null=True,
+                verbose_name="<i>Serum Albumin units</i>",
+            ),
         ),
         migrations.AlterField(
-            model_name='biomedicalhistory',
-            name='serum_uric_acid_units',
-            field=models.CharField(blank=True, choices=[('mg/dL', 'mg/dL'), ('mmol/L', 'mmol/L')], max_length=15, null=True, verbose_name='<i>Serum uric acid units</i>'),
+            model_name="biomedicalhistory",
+            name="serum_uric_acid_units",
+            field=models.CharField(
+                blank=True,
+                choices=[("mg/dL", "mg/dL"), ("mmol/L", "mmol/L")],
+                max_length=15,
+                null=True,
+                verbose_name="<i>Serum uric acid units</i>",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalbiomedicalfollowup',
-            name='albumin_units',
-            field=models.CharField(blank=True, choices=[('g/dL', 'g/dL'), ('g/L', 'g/L')], max_length=15, null=True, verbose_name='<i>Serum Albumin units</i>'),
+            model_name="historicalbiomedicalfollowup",
+            name="albumin_units",
+            field=models.CharField(
+                blank=True,
+                choices=[("g/dL", "g/dL"), ("g/L", "g/L")],
+                max_length=15,
+                null=True,
+                verbose_name="<i>Serum Albumin units</i>",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalbiomedicalfollowup',
-            name='serum_uric_acid_units',
-            field=models.CharField(blank=True, choices=[('mg/dL', 'mg/dL'), ('mmol/L', 'mmol/L')], max_length=15, null=True, verbose_name='<i>Serum uric acid units</i>'),
+            model_name="historicalbiomedicalfollowup",
+            name="serum_uric_acid_units",
+            field=models.CharField(
+                blank=True,
+                choices=[("mg/dL", "mg/dL"), ("mmol/L", "mmol/L")],
+                max_length=15,
+                null=True,
+                verbose_name="<i>Serum uric acid units</i>",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalbiomedicalhistory',
-            name='albumin_units',
-            field=models.CharField(blank=True, choices=[('g/dL', 'g/dL'), ('g/L', 'g/L')], max_length=15, null=True, verbose_name='<i>Serum Albumin units</i>'),
+            model_name="historicalbiomedicalhistory",
+            name="albumin_units",
+            field=models.CharField(
+                blank=True,
+                choices=[("g/dL", "g/dL"), ("g/L", "g/L")],
+                max_length=15,
+                null=True,
+                verbose_name="<i>Serum Albumin units</i>",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalbiomedicalhistory',
-            name='serum_uric_acid_units',
-            field=models.CharField(blank=True, choices=[('mg/dL', 'mg/dL'), ('mmol/L', 'mmol/L')], max_length=15, null=True, verbose_name='<i>Serum uric acid units</i>'),
+            model_name="historicalbiomedicalhistory",
+            name="serum_uric_acid_units",
+            field=models.CharField(
+                blank=True,
+                choices=[("mg/dL", "mg/dL"), ("mmol/L", "mmol/L")],
+                max_length=15,
+                null=True,
+                verbose_name="<i>Serum uric acid units</i>",
+            ),
         ),
     ]

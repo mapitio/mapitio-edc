@@ -1,7 +1,8 @@
-from edc_auth.codenames import clinic
+from copy import copy
+from edc_auth.codenames import clinic as default
 
 
-clinic += [
+default += [
     "mapitio_lists.view_arvregimens",
     "mapitio_lists.view_chestxrayfindings",
     "mapitio_lists.view_cholesterolmedications",
@@ -94,4 +95,6 @@ clinic += [
     "mapitio_subject.view_subjectrequisition",
     "mapitio_subject.view_subjectvisit",
 ]
-clinic.sort()
+
+default.sort()
+clinic = copy(default)

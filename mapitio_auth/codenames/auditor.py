@@ -1,7 +1,7 @@
-from django.conf import settings
-from edc_auth.codenames import auditor
+from copy import copy
+from edc_auth.codenames import auditor as default
 
-auditor += [
+default += [
     "mapitio_lists.view_arvregimens",
     "mapitio_lists.view_chestxrayfindings",
     "mapitio_lists.view_cholesterolmedications",
@@ -47,8 +47,5 @@ auditor += [
     "mapitio_subject.view_subjectvisit",
 ]
 
-if settings.MAPITIO_SCREENING_DISABLED:
-    for item in auditor:
-        if "screening" in item:
-            auditor.remove(item)
-auditor.sort()
+default.sort()
+auditor = copy(default)
