@@ -47,6 +47,9 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
                     f"Expected {subject_screening.clinic_type}. Got {instance.clinic_type}"
                 )
             subject_screening.subject_identifier = instance.subject_identifier
+            subject_screening.hospital_identifier = instance.hospital_identifier
+            subject_screening.ctc_identifier = instance.ctc_identifier
+            subject_screening.file_number = instance.file_number
             subject_screening.consented = True
             subject_screening.save_base(
                 update_fields=["subject_identifier", "consented"]

@@ -1,6 +1,3 @@
-import re
-
-from django.db.models import Q
 from edc_dashboard.view_mixins import EdcViewMixin
 from edc_constants.constants import ABNORMAL
 from edc_dashboard.view_mixins import ListboardFilterViewMixin, SearchFormViewMixin
@@ -8,6 +5,7 @@ from edc_dashboard.views import ListboardView
 from edc_navbar import NavbarViewMixin
 
 from ...model_wrappers import SubjectScreeningModelWrapper
+from ..search_options import extra_search_options
 from .filters import ListboardViewFilters
 
 
@@ -53,12 +51,4 @@ class ListboardView(
         return options
 
     def extra_search_options(self, search_term):
-        q_objects = []
-        if re.match("^[A-Z\-]+$", search_term):
-            q_objects.append(Q(initials__exact=search_term.upper()))
-            q_objects.append(
-                Q(screening_identifier__icontains=search_term.replace("-", "").upper())
-            )
-        if re.match("^[0-9]+$", search_term):
-            q_objects.append(Q(hospital_identifier__exact=search_term))
-        return q_objects
+        return extra_search_options(search_term)

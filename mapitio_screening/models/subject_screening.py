@@ -6,7 +6,6 @@ from django.core.validators import (
     MaxLengthValidator,
 )
 from django.db import models
-from django.utils.safestring import mark_safe
 from django_crypto_fields.fields import EncryptedCharField
 from edc_consent.field_mixins import PersonalFieldsMixin
 from edc_constants.choices import GENDER, YES_NO_NA
@@ -26,6 +25,7 @@ from edc_utils import get_utcnow
 from ..choices import CLINIC_CHOICES, SELECTION_METHOD
 from ..constants import INTEGRATED_CLINIC
 from ..eligibility import check_eligible_final
+from .model_mixins import MapitioAdditionalIdentifiersModelMixin
 
 
 class SubjectScreeningModelError(Exception):
@@ -34,6 +34,7 @@ class SubjectScreeningModelError(Exception):
 
 class SubjectScreening(
     NonUniqueSubjectIdentifierModelMixin,
+    MapitioAdditionalIdentifiersModelMixin,
     SearchSlugModelMixin,
     ScreeningMethodsModeMixin,
     ScreeningFieldsModeMixin,
@@ -79,36 +80,14 @@ class SubjectScreening(
         verbose_name="Is date of birth estimated?", null=True, blank=False
     )
 
-    hospital_identifier = models.CharField(
-        verbose_name="HMS Identifier",
-        max_length=25,
-        help_text="Hindu Mandal Hospital Identifier",
-        unique=True,
-    )
-
     confirm_hospital_identifier = models.CharField(
         verbose_name="Confirm HMS Identifier",
         max_length=25,
         help_text="Retype the Hindu Mandal Hospital Identifier",
     )
 
-    ctc_identifier = models.CharField(
-        verbose_name="CTC Identifier",
-        max_length=25,
-        null=True,
-        blank=True,
-        unique=True,
-    )
-
     confirm_ctc_identifier = models.CharField(
         verbose_name="Confirm CTC Identifier", max_length=25, null=True, blank=True,
-    )
-
-    file_number = models.CharField(
-        verbose_name="Patient File number",
-        max_length=25,
-        help_text=mark_safe("Patient file number from Hindu Mandal Hospital"),
-        unique=True,
     )
 
     clinic_registration_date = models.DateField(

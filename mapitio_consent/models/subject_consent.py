@@ -17,6 +17,7 @@ from edc_search.model_mixins import SearchSlugManager
 from edc_sites.models import SiteModelMixin
 from edc_visit_tracking.managers import CurrentSiteManager
 from mapitio_screening.choices import CLINIC_CHOICES
+from mapitio_screening.models import MapitioAdditionalIdentifiersModelMixin
 
 from ..choices import IDENTITY_TYPE
 from .model_mixins import SearchSlugModelMixin
@@ -34,6 +35,7 @@ class SubjectConsentManager(SearchSlugManager, models.Manager):
 
 class SubjectConsent(
     ConsentModelMixin,
+    MapitioAdditionalIdentifiersModelMixin,
     SiteModelMixin,
     UpdatesOrCreatesRegistrationModelMixin,
     NonUniqueSubjectIdentifierModelMixin,
@@ -97,6 +99,9 @@ class SubjectConsent(
     def save(self, *args, **kwargs):
         subject_screening = self.get_subject_screening()
         self.screening_datetime = subject_screening.report_datetime
+        self.hospital_identifier = subject_screening.hospital_identifier
+        self.ctc_identifier = subject_screening.ctc_identifier
+        self.file_number = subject_screening.file_number
         self.subject_type = "subject"
         self.citizen = NOT_APPLICABLE
         super().save(*args, **kwargs)

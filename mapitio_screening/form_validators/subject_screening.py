@@ -1,4 +1,6 @@
 from datetime import date
+
+from dateutil.relativedelta import relativedelta
 from django import forms
 from django.conf import settings
 from edc_form_validators import FormValidator
@@ -67,3 +69,21 @@ class SubjectScreeningFormValidator(FormValidator):
                 raise forms.ValidationError(
                     {"last_clinic_date": "Cannot be before enrollment date"}
                 )
+
+    def validate_age(self):
+        """Validate age matches that on the screening form.
+        """
+        screening_age_in_years = relativedelta(
+            self.cleaned_data.get("report_datetime").date(),
+            self.cleaned_data.get("dob"),
+        ).years
+        age_in_years = self.cleaned_data.get("age_in_years")
+        if screening_age_in_years != age_in_years:
+            raise forms.ValidationError(
+                {
+                    "dob": "Age mismatch. The date of birth entered does "
+                    f"not match the age at screening. "
+                    f"Expected {screening_age_in_years}. "
+                    f"Got {age_in_years}."
+                }
+            )

@@ -3,8 +3,13 @@ from edc_consent.modelform_mixins import ConsentModelFormMixin
 from edc_form_validators import FormValidatorMixin
 from edc_sites.forms import SiteModelFormMixin
 
-from ..form_validators import SubjectConsentFormValidator
+from ..form_validators import SubjectConsentFormValidator as BaseFormValidator
 from ..models import SubjectConsent
+
+
+class SubjectConsentFormValidator(BaseFormValidator):
+    def validate_consent_datetime(self):
+        pass
 
 
 class SubjectConsentForm(
