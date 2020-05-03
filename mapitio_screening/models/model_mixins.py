@@ -10,7 +10,6 @@ class MapitioAdditionalIdentifiersModelMixin(models.Model):
         max_length=36,
         help_text="Hindu Mandal Hospital Identifier",
         unique=True,
-        default=uuid4,
     )
 
     ctc_identifier = models.CharField(
@@ -19,7 +18,6 @@ class MapitioAdditionalIdentifiersModelMixin(models.Model):
         null=True,
         blank=True,
         unique=True,
-        default=uuid4,
     )
 
     file_number = models.CharField(
@@ -27,7 +25,6 @@ class MapitioAdditionalIdentifiersModelMixin(models.Model):
         max_length=36,
         help_text=mark_safe("Patient file number from Hindu Mandal Hospital"),
         unique=True,
-        default=uuid4,
     )
 
     class Meta:
