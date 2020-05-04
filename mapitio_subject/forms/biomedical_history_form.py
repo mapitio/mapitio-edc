@@ -2,7 +2,7 @@ from dateutil.relativedelta import relativedelta
 from django import forms
 from django.conf import settings
 from edc_action_item.forms.action_item_form_mixin import ActionItemFormMixin
-from edc_constants.constants import NEG, POS
+from edc_constants.constants import NEG, POS, YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
 from edc_utils import convert_php_dateformat
@@ -86,6 +86,9 @@ class BiomedicalFormValidator(FormValidator):
         self.required_if_not_none(
             field="cd4", field_required="cd4_date", field_required_evaluate_as_int=True
         )
+
+        self.required_if(YES, field="vl_detectable", field_required="vl")
+
         self.required_if_not_none(
             field="vl", field_required="vl_date", field_required_evaluate_as_int=True
         )
