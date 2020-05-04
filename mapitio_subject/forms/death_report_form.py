@@ -32,6 +32,7 @@ class DeathReportFormValidator(FormValidator):
                         )
                     }
                 )
+        self.required_if(YES, field="death_causeKnown", field_required="death_cause")
 
 
 class DeathReportForm(CrfModelFormMixin, ActionItemFormMixin, forms.ModelForm):

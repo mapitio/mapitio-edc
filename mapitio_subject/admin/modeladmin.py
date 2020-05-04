@@ -92,7 +92,7 @@ class BiomedicalModelAdminMixin:
                 )
             },
         ),
-        ("HIV", {"fields": ("cd4", "cd4_date", "vl", "vl_date",)},),
+        ("HIV", {"fields": ("cd4", "cd4_date", "vl_detectable", "vl", "vl_date",)},),
         (
             "Other Infectious Diseases",
             {"fields": ("hbsag", "hbsag_date", "hcv", "hcv_date")},
@@ -107,6 +107,7 @@ class BiomedicalModelAdminMixin:
         "serum_uric_acid_units": admin.VERTICAL,
         "albumin_units": admin.VERTICAL,
         "hbsag": admin.VERTICAL,
+        "vl_detectable": admin.VERTICAL,
         "hcv": admin.VERTICAL,
         "crf_status": admin.VERTICAL,
     }

@@ -6,38 +6,70 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mapitio_screening', '0002_auto_20200503_2311'),
+        ("mapitio_screening", "0002_auto_20200503_2311"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='historicalsubjectscreening',
-            name='ctc_identifier',
-            field=models.CharField(blank=True, db_index=True, max_length=36, null=True, verbose_name='CTC Identifier'),
+            model_name="historicalsubjectscreening",
+            name="ctc_identifier",
+            field=models.CharField(
+                blank=True,
+                db_index=True,
+                max_length=36,
+                null=True,
+                verbose_name="CTC Identifier",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalsubjectscreening',
-            name='file_number',
-            field=models.CharField(db_index=True, help_text='Patient file number from Hindu Mandal Hospital', max_length=36, verbose_name='Patient File number'),
+            model_name="historicalsubjectscreening",
+            name="file_number",
+            field=models.CharField(
+                db_index=True,
+                help_text="Patient file number from Hindu Mandal Hospital",
+                max_length=36,
+                verbose_name="Patient File number",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalsubjectscreening',
-            name='hospital_identifier',
-            field=models.CharField(db_index=True, help_text='Hindu Mandal Hospital Identifier', max_length=36, verbose_name='HMS Identifier'),
+            model_name="historicalsubjectscreening",
+            name="hospital_identifier",
+            field=models.CharField(
+                db_index=True,
+                help_text="Hindu Mandal Hospital Identifier",
+                max_length=36,
+                verbose_name="HMS Identifier",
+            ),
         ),
         migrations.AlterField(
-            model_name='subjectscreening',
-            name='ctc_identifier',
-            field=models.CharField(blank=True, max_length=36, null=True, unique=True, verbose_name='CTC Identifier'),
+            model_name="subjectscreening",
+            name="ctc_identifier",
+            field=models.CharField(
+                blank=True,
+                max_length=36,
+                null=True,
+                unique=True,
+                verbose_name="CTC Identifier",
+            ),
         ),
         migrations.AlterField(
-            model_name='subjectscreening',
-            name='file_number',
-            field=models.CharField(help_text='Patient file number from Hindu Mandal Hospital', max_length=36, unique=True, verbose_name='Patient File number'),
+            model_name="subjectscreening",
+            name="file_number",
+            field=models.CharField(
+                help_text="Patient file number from Hindu Mandal Hospital",
+                max_length=36,
+                unique=True,
+                verbose_name="Patient File number",
+            ),
         ),
         migrations.AlterField(
-            model_name='subjectscreening',
-            name='hospital_identifier',
-            field=models.CharField(help_text='Hindu Mandal Hospital Identifier', max_length=36, unique=True, verbose_name='HMS Identifier'),
+            model_name="subjectscreening",
+            name="hospital_identifier",
+            field=models.CharField(
+                help_text="Hindu Mandal Hospital Identifier",
+                max_length=36,
+                unique=True,
+                verbose_name="HMS Identifier",
+            ),
         ),
     ]

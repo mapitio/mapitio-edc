@@ -6,8 +6,9 @@ from edc_constants.choices import (
     POS_NEG_NOT_DONE,
     YES_NO,
     YES_NO_NA,
+    YES_NO_NOT_DONE,
 )
-from edc_constants.constants import INCOMPLETE, NOT_APPLICABLE
+from edc_constants.constants import INCOMPLETE, NOT_APPLICABLE, NOT_DONE
 from edc_crf.model_mixins import CrfModelMixin as BaseCrfModelMixin
 from edc_model import models as edc_models
 from edc_model.validators import date_is_past
@@ -425,6 +426,13 @@ class BiomedicalModelMixin(models.Model):
         validators=[date_is_past, date_is_not_now],
         null=True,
         blank=True,
+    )
+
+    vl_detectable = models.CharField(
+        verbose_name=mark_safe("Was the <u>viral load</u> detectable?"),
+        max_length=15,
+        choices=YES_NO_NOT_DONE,
+        default=NOT_DONE,
     )
 
     vl = models.IntegerField(
