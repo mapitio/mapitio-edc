@@ -54,7 +54,7 @@ class BiomedicalFormValidator(FormValidator):
             field_required_evaluate_as_int=True,
         )
         self.required_if_not_none(
-            field="serum_creatinine",
+            field="serum_uric_acid",
             field_required="serum_uric_acid_date",
             field_required_evaluate_as_int=True,
         )
