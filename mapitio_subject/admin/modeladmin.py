@@ -107,6 +107,7 @@ class BiomedicalModelAdminMixin:
         "serum_uric_acid_units": admin.VERTICAL,
         "albumin_units": admin.VERTICAL,
         "hbsag": admin.VERTICAL,
+        "vl_detectable": admin.VERTICAL,
         "hcv": admin.VERTICAL,
         "crf_status": admin.VERTICAL,
     }
