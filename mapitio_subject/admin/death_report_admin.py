@@ -20,7 +20,14 @@ class DeathReportAdmin(
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
             "Details",
-            {"fields": ("death_date", "death_date_estimated", "death_cause"),},
+            {
+                "fields": (
+                    "death_date",
+                    "death_date_estimated",
+                    "death_cause_known",
+                    "death_cause",
+                ),
+            },
         ),
         comment_fieldset_tuple,
         audit_fieldset_tuple,
@@ -28,5 +35,6 @@ class DeathReportAdmin(
 
     radio_fields = {
         "death_date_estimated": admin.VERTICAL,
+        "death_cause_known": admin.VERTICAL,
         "crf_status": admin.VERTICAL,
     }
