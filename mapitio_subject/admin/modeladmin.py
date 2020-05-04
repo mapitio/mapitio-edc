@@ -92,7 +92,7 @@ class BiomedicalModelAdminMixin:
                 )
             },
         ),
-        ("HIV", {"fields": ("cd4", "cd4_date", "vl", "vl_date",)},),
+        ("HIV", {"fields": ("cd4", "cd4_date", "vl_detectable", "vl", "vl_date",)},),
         (
             "Other Infectious Diseases",
             {"fields": ("hbsag", "hbsag_date", "hcv", "hcv_date")},

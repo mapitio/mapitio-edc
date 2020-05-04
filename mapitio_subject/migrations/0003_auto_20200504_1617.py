@@ -6,28 +6,48 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mapitio_subject', '0002_auto_20200502_2021'),
+        ("mapitio_subject", "0002_auto_20200502_2021"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='biomedicalfollowup',
-            name='vl_detectable',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('not_done', 'Not done')], default='not_done', max_length=15, verbose_name='Was the <u>viral load</u> detectable?'),
+            model_name="biomedicalfollowup",
+            name="vl_detectable",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("not_done", "Not done")],
+                default="not_done",
+                max_length=15,
+                verbose_name="Was the <u>viral load</u> detectable?",
+            ),
         ),
         migrations.AddField(
-            model_name='biomedicalhistory',
-            name='vl_detectable',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('not_done', 'Not done')], default='not_done', max_length=15, verbose_name='Was the <u>viral load</u> detectable?'),
+            model_name="biomedicalhistory",
+            name="vl_detectable",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("not_done", "Not done")],
+                default="not_done",
+                max_length=15,
+                verbose_name="Was the <u>viral load</u> detectable?",
+            ),
         ),
         migrations.AddField(
-            model_name='historicalbiomedicalfollowup',
-            name='vl_detectable',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('not_done', 'Not done')], default='not_done', max_length=15, verbose_name='Was the <u>viral load</u> detectable?'),
+            model_name="historicalbiomedicalfollowup",
+            name="vl_detectable",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("not_done", "Not done")],
+                default="not_done",
+                max_length=15,
+                verbose_name="Was the <u>viral load</u> detectable?",
+            ),
         ),
         migrations.AddField(
-            model_name='historicalbiomedicalhistory',
-            name='vl_detectable',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('not_done', 'Not done')], default='not_done', max_length=15, verbose_name='Was the <u>viral load</u> detectable?'),
+            model_name="historicalbiomedicalhistory",
+            name="vl_detectable",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("not_done", "Not done")],
+                default="not_done",
+                max_length=15,
+                verbose_name="Was the <u>viral load</u> detectable?",
+            ),
         ),
     ]
