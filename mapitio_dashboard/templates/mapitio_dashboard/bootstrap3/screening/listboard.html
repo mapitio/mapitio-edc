@@ -52,11 +52,11 @@
 
 {% block listboard_table_columns %}
 
-    <td>{{ result.hospital_identifier }} </td>
+    <td>{{ result.hms_id }} </td>
     <td nowrap>{{ result.initials }}</td>
     <td nowrap>{{ result.age_in_years }} yrs {{ result.gender }}</td>
-    <td nowrap>{{ result.file_number }}</td>
-    <td nowrap>{{ result.ctc_identifier }}</td>
+    <td nowrap>{{ result.hms_file }}</td>
+    <td nowrap>{{ result.ctc_id }}</td>
     <td nowrap>{% if result.consent %}{{ result.consent.subject_identifier }}{% else %} -- {% endif %}</td>
     <td nowrap>{{ result.user_created }}</td>
     <td nowrap>{{ result.object.modified|date:"SHORT_DATETIME_FORMAT" }}</td>  

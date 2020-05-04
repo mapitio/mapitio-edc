@@ -22,7 +22,7 @@
 
 {% block listboard_table_columns %}
 
-    <td>{{ result.hospital_identifier }} </td>
+    <td>{{ result.hms_id }} </td>
     </td>
     <td>
        {% if result.gender == MALE %}
@@ -33,8 +33,8 @@
        {% if perms.edc_registration.display_firstname %}{{ result.first_name }}{% else %}******{% endif %} {% if perms.edc_registration.display_lastname %}{{ result.initials }}{% else %}******{% endif %}
     </td>
     <td>{% age_in_years result.object.dob %}yrs {% if perms.edc_registration.display_dob %}{{ result.object.dob|date:"SHORT_DATE_FORMAT" }}{% else %}**/**/****{% endif %}</td>
-    <td nowrap>{{ result.file_number }}</td>
-    <td nowrap>{{ result.ctc_identifier }}</td>
+    <td nowrap>{{ result.hms_file }}</td>
+    <td nowrap>{{ result.ctc_id }}</td>
     <td>{{ result.subject_identifier }}
     <td>{{ result.object.consent_datetime|date:"SHORT_DATE_FORMAT" }}</td>
     <td>{{ result.object.modified|date:"SHORT_DATETIME_FORMAT" }}</td>

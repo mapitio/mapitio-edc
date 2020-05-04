@@ -13,6 +13,18 @@ class SubjectConsentModelWrapper(BaseModelWrapper):
             f"screening_identifier&{super().querystring}"
         )
 
+    @property
+    def hms_id(self):
+        return self.object.hospital_identifier.strip()
+
+    @property
+    def ctc_id(self):
+        return self.object.ctc_identifier.strip()
+
+    @property
+    def hms_file(self):
+        return self.object.file_number.strip()
+
 
 class SubjectScreeningModelWrapper(ConsentModelWrapperMixin, ModelWrapper):
 
@@ -39,6 +51,18 @@ class SubjectScreeningModelWrapper(ConsentModelWrapperMixin, ModelWrapper):
             return consent_model_cls.objects.get(**self.consent_options)
         except ObjectDoesNotExist:
             return None
+
+    @property
+    def hms_id(self):
+        return self.object.hospital_identifier.strip()
+
+    @property
+    def ctc_id(self):
+        return self.object.ctc_identifier.strip()
+
+    @property
+    def hms_file(self):
+        return self.object.file_number.strip()
 
     @property
     def human_screening_identifier(self):
