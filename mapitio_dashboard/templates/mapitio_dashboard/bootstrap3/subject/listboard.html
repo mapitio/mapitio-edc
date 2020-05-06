@@ -32,9 +32,9 @@
     </td>
     <td>{% age_in_years result.object.dob %}yrs {% if perms.edc_registration.display_dob %}{{ result.object.dob|date:"SHORT_DATE_FORMAT" }}{% else %}**/**/****{% endif %}</td>
     <td nowrap>
-        <B>HMS:</B> {{ result.hospital_identifier }}<BR>
-        <B>HMS File:</B>{{ result.file_number }}<BR>
-        <B>CTC:</B>: {{ result.ctc_identifier }}
+        <B>HMS:</B> {% if perms.edc_registration.display_identity %}{{ result.hospital_identifier }}{% else %}*********{% endif %}<BR>
+        <B>HMS File:</B>{% if perms.edc_registration.display_identity %}{{ result.file_number }}{% else %}*********{% endif %}<BR>
+        <B>CTC:</B>: {% if perms.edc_registration.display_identity %}{{ result.ctc_identifier }}{% else %}*********{% endif %}
     </td>
     <td>{{ result.object.consent_datetime|date:"SHORT_DATE_FORMAT" }}</td>
     <td>{{ result.object.modified|date:"SHORT_DATETIME_FORMAT" }}</td>
