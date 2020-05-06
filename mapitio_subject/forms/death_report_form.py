@@ -1,6 +1,6 @@
 from django import forms
 from edc_action_item.forms.action_item_form_mixin import ActionItemFormMixin
-from edc_constants.constants import DEAD, YES
+from edc_constants.constants import YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
 from edc_utils import convert_php_dateformat

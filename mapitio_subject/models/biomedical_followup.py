@@ -1,9 +1,9 @@
-from edc_model.models.base_uuid_model import BaseUuidModel
+from edc_model import models as edc_models
 
 from .model_mixins import BiomedicalModelMixin, CrfModelMixin
 
 
-class BiomedicalFollowup(CrfModelMixin, BiomedicalModelMixin, BaseUuidModel):
+class BiomedicalFollowup(BiomedicalModelMixin, CrfModelMixin, edc_models.BaseUuidModel):
     class Meta(CrfModelMixin.Meta):
         verbose_name = "Biomedical Followup"
         verbose_name_plural = "Biomedical Followup"

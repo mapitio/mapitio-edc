@@ -1,17 +1,30 @@
 from django import forms
 from django.conf import settings
-from edc_action_item.forms.action_item_form_mixin import ActionItemFormMixin
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_utils import convert_php_dateformat
 from mapitio_screening.models import SubjectScreening
 
-from ..models import BiomedicalFollowup
+from django.core.exceptions import ObjectDoesNotExist
+from ..models import BiomedicalFollowup, BiomedicalHistory
 from .biomedical_history_form import BiomedicalFormValidator
 
 
 class BiomedicalFollowupFormValidator(BiomedicalFormValidator):
     def clean(self):
         super().clean()
+
+        # confirm biomedical_history is complete
+        try:
+            BiomedicalHistory.objects.get(
+                subject_identifier=self.cleaned_data.get(
+                    "subject_visit"
+                ).subject_identifier
+            )
+        except ObjectDoesNotExist:
+            raise forms.ValidationError(
+                f"{BiomedicalHistory._meta.verbose_name} for this subject must be completed first."
+            )
+
         enrollment = SubjectScreening.objects.get(
             subject_identifier=self.cleaned_data.get("subject_visit").subject_identifier
         )
@@ -35,7 +48,7 @@ class BiomedicalFollowupFormValidator(BiomedicalFormValidator):
                         )
 
 
-class BiomedicalFollowupForm(CrfModelFormMixin, ActionItemFormMixin, forms.ModelForm):
+class BiomedicalFollowupForm(CrfModelFormMixin, forms.ModelForm):
     form_validator_cls = BiomedicalFollowupFormValidator
 
     class Meta:

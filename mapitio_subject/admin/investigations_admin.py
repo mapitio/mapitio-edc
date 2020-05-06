@@ -20,10 +20,37 @@ class InvestigationsAdmin(
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
             "Chest X-ray",
-            {"fields": ("chest_xray_findings", "chest_xray_findings_other",)},
+            {
+                "fields": (
+                    "chest_xray_requested",
+                    "chest_xray_findings_documented",
+                    "chest_xray_findings",
+                    "chest_xray_findings_other",
+                )
+            },
         ),
-        ("ECG", {"fields": ("ecg_findings", "ecg_findings_other",)},),
-        ("ECHO", {"fields": ("echo_findings", "echo_findings_other",)},),
+        (
+            "ECG",
+            {
+                "fields": (
+                    "ecg_requested",
+                    "ecg_findings_documented",
+                    "ecg_findings",
+                    "ecg_findings_other",
+                )
+            },
+        ),
+        (
+            "ECHO",
+            {
+                "fields": (
+                    "echo_requested",
+                    "echo_findings_documented",
+                    "echo_findings",
+                    "echo_findings_other",
+                )
+            },
+        ),
         comment_fieldset_tuple,
         audit_fieldset_tuple,
     )
@@ -31,5 +58,11 @@ class InvestigationsAdmin(
     filter_horizontal = ["chest_xray_findings", "ecg_findings", "echo_findings"]
 
     radio_fields = {
+        "chest_xray_requested": admin.VERTICAL,
+        "chest_xray_findings_documented": admin.VERTICAL,
+        "ecg_requested": admin.VERTICAL,
+        "ecg_findings_documented": admin.VERTICAL,
+        "echo_requested": admin.VERTICAL,
+        "echo_findings_documented": admin.VERTICAL,
         "crf_status": admin.VERTICAL,
     }

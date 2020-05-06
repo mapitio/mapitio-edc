@@ -1,16 +1,16 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_model_admin import SimpleHistoryAdmin
-from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from mapitio_subject.admin.fieldsets import comment_fieldset_tuple
 
 from ..admin_site import mapitio_subject_admin
 from ..forms import NcdHistoryForm
 from ..models import NcdHistory
+from .modeladmin import CrfModelAdminMixin
 
 
 @admin.register(NcdHistory, site=mapitio_subject_admin)
-class NcdHistoryAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
+class NcdHistoryAdmin(CrfModelAdminMixin, SimpleHistoryAdmin):
     additional_instructions = (
         "Complete for data recorded when patient first attended the clinic "
     )
