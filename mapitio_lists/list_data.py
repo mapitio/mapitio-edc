@@ -5,6 +5,7 @@ from edc_constants.constants import (
     OTHER,
     DEAD,
     NOT_APPLICABLE,
+    UNKNOWN,
 )
 from edc_list_data import PreloadData
 from mapitio_prn.constants import (
@@ -90,6 +91,7 @@ list_data = {
         ("carvedilol", "Carvedilol"),
         ("valsartan", "Valsartan"),
         ("simvastatin", "Simvastatin"),
+        (UNKNOWN, "Unknown  ---"),
         (NOT_APPLICABLE, "Not applicable  ---"),
         (OTHER, "Other treatment (specify below) ..."),
     ],
@@ -119,6 +121,7 @@ list_data = {
         ("gliclazide_s", "Gliclazide (S)"),
         ("glipizide_s", "Glipizide (S)"),
         ("insulin", "Insulin"),
+        (UNKNOWN, "Unknown  ---"),
         (NOT_APPLICABLE, "Not applicable  ---"),
         (OTHER, "Other, specify ..."),
     ],

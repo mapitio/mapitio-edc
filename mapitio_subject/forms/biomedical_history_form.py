@@ -1,7 +1,6 @@
 from dateutil.relativedelta import relativedelta
 from django import forms
 from django.conf import settings
-from edc_action_item.forms.action_item_form_mixin import ActionItemFormMixin
 from edc_constants.constants import NEG, NO, POS, YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
@@ -115,18 +114,18 @@ class BiomedicalHistoryFormValidator(BiomedicalFormValidator):
                 if self.cleaned_data.get(fld.name):
                     if self.cleaned_data.get(
                         fld.name
-                    ) > enrollment.clinic_registration_date + relativedelta(months=6):
+                    ) > enrollment.clinic_registration_date + relativedelta(months=12):
                         raise forms.ValidationError(
                             {
                                 fld.name: (
-                                    f"Cannot be more than 6 months after the "
+                                    f"Cannot be more than 12 months after the "
                                     f"enrollment date ({formatted_date})."
                                 )
                             }
                         )
 
 
-class BiomedicalHistoryForm(CrfModelFormMixin, ActionItemFormMixin, forms.ModelForm):
+class BiomedicalHistoryForm(CrfModelFormMixin, forms.ModelForm):
     form_validator_cls = BiomedicalHistoryFormValidator
 
     class Meta:

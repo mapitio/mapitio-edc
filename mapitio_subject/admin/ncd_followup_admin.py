@@ -1,16 +1,16 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_model_admin import SimpleHistoryAdmin
-from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from mapitio_subject.admin.fieldsets import comment_fieldset_tuple
 
 from ..admin_site import mapitio_subject_admin
 from ..forms import NcdFollowupForm
 from ..models import NcdFollowup
+from .modeladmin import CrfModelAdminMixin
 
 
 @admin.register(NcdFollowup, site=mapitio_subject_admin)
-class NcdFollowupAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
+class NcdFollowupAdmin(CrfModelAdminMixin, SimpleHistoryAdmin):
     form = NcdFollowupForm
 
     fieldsets = (
