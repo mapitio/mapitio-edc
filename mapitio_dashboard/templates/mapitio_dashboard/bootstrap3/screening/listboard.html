@@ -54,9 +54,9 @@
     <td nowrap>{{ result.initials }}</td>
     <td nowrap>{{ result.age_in_years }} yrs {{ result.gender }}</td>
     <td nowrap>
-        <B>HMS:</B> {{ result.hospital_identifier }}<BR>
-        <B>HMS File:</B>{{ result.file_number }}<BR>
-        <B>CTC:</B>: {{ result.ctc_identifier }}
+        <B>HMS:</B> {% if perms.edc_registration.display_identity %}{{ result.hospital_identifier }}{% else %}*********{% endif %}<BR>
+        <B>HMS File:</B>{% if perms.edc_registration.display_identity %}{{ result.file_number }}{% else %}*********{% endif %}<BR>
+        <B>CTC:</B>: {% if perms.edc_registration.display_identity %}{{ result.ctc_identifier }}{% else %}*********{% endif %}
     </td>
     <td nowrap>{{ result.user_created }}</td>
     <td nowrap>{{ result.object.modified|date:"SHORT_DATETIME_FORMAT" }}</td>  
