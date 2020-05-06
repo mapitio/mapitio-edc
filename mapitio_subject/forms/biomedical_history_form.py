@@ -87,12 +87,8 @@ class BiomedicalFormValidator(FormValidator):
             field="cd4", field_required="cd4_date", field_required_evaluate_as_int=True
         )
 
+        # viral load
         self.required_if(YES, field="vl_detectable", field_required="vl")
-
-        self.required_if_not_none(
-            field="vl", field_required="vl_date", field_required_evaluate_as_int=True
-        )
-
         self.required_if(YES, NO, field="vl_detectable", field_required="vl_date")
 
         for field_name in [
