@@ -290,9 +290,9 @@ class DeathReportTmgAction(ActionWithNotification):
         return next_actions
 
 
-site_action_items.register(DeathReportAction)
-site_action_items.register(DeathReportTmgAction)
-site_action_items.register(AeFollowupAction)
-site_action_items.register(AeInitialAction)
-site_action_items.register(AeSusarAction)
-site_action_items.register(AeTmgAction)
+# site_action_items.register(DeathReportAction)
+# site_action_items.register(DeathReportTmgAction)
+# site_action_items.register(AeFollowupAction)
+# site_action_items.register(AeInitialAction)
+# site_action_items.register(AeSusarAction)
+# site_action_items.register(AeTmgAction)

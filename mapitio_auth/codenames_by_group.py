@@ -1,4 +1,6 @@
 from edc_auth import (
+    AE,
+    AE_REVIEW,
     AUDITOR,
     CLINIC,
     DATA_MANAGER,
@@ -24,6 +26,8 @@ from .codenames import (
 
 def get_codenames_by_group():
     codenames_by_group = {k: v for k, v in get_default_codenames_by_group().items()}
+    codenames_by_group[AE] = []
+    codenames_by_group[AE_REVIEW] = []
     codenames_by_group[AUDITOR] = auditor
     codenames_by_group[CLINIC] = clinic
     codenames_by_group[PII] = pii

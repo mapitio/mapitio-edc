@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_model_admin import SimpleHistoryAdmin
 from mapitio_subject.admin.fieldsets import comment_fieldset_tuple
@@ -12,6 +13,10 @@ from .modeladmin import CrfModelAdminMixin
 @admin.register(NcdFollowup, site=mapitio_subject_admin)
 class NcdFollowupAdmin(CrfModelAdminMixin, SimpleHistoryAdmin):
     form = NcdFollowupForm
+
+    additional_instructions = mark_safe(
+        "<span style='color:#ff8000'>Complete for data as of the patient's last attended clinic visit</span>"
+    )
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),

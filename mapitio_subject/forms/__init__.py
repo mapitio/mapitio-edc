@@ -3,7 +3,9 @@ from .biomedical_history_form import BiomedicalHistoryForm
 from .complications_form import ComplicationsForm
 from .death_report_form import DeathReportForm
 from .follow_up_form import FollowUpForm
+from .followup_indicators_form import FollowupIndicatorsForm
 from .hiv_history_form import HivHistoryForm
+from .hiv_followup_form import HivFollowupForm
 from .indicators_form import IndicatorsForm
 from .investigations_form import InvestigationsForm
 from .ncd_followup_form import NcdFollowupForm

@@ -27,7 +27,7 @@ from mapitio_lists.models import (
     HypertensionMedications,
 )
 
-from ..choices import CRF_STATUS
+from ..choices import CRF_STATUS, FASTING_CHOICES
 
 
 class CrfModelMixin(BaseCrfModelMixin):
@@ -75,7 +75,7 @@ class NcdModelMixin(models.Model):
     )
 
     diabetes_rx = models.ManyToManyField(
-        DiabetesMedications, verbose_name="Diabetes treatment",
+        DiabetesMedications, verbose_name="Diabetes treatment", blank=True,
     )
 
     other_diabetes_rx = edc_models.OtherCharField(null=True, blank=True)
@@ -110,7 +110,7 @@ class NcdModelMixin(models.Model):
     )
 
     hypertension_rx = models.ManyToManyField(
-        HypertensionMedications, verbose_name="Hypertension treatment",
+        HypertensionMedications, verbose_name="Hypertension treatment", blank=True,
     )
 
     other_hypertension_rx = edc_models.OtherCharField(null=True, blank=True)
@@ -446,6 +446,55 @@ class BiomedicalModelMixin(models.Model):
     vl_date = models.DateField(
         verbose_name=mark_safe("<i>Viral load date</i>"),
         validators=[date_is_past, date_is_not_now],
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        abstract = True
+
+
+class IndicatorsModelMixin(models.Model):
+
+    weight = edc_models.WeightField(null=True, blank=True)
+
+    waist_circumference = models.DecimalField(
+        verbose_name="Waist circumference",
+        max_digits=5,
+        decimal_places=1,
+        validators=[MinValueValidator(50.0), MaxValueValidator(175.0)],
+        help_text="in centimeters",
+        null=True,
+        blank=True,
+    )
+
+    sys_blood_pressure = edc_models.SystolicPressureField(null=True, blank=True)
+
+    dia_blood_pressure = edc_models.DiastolicPressureField(null=True, blank=True)
+
+    glucose = models.DecimalField(
+        verbose_name="Blood Glucose",
+        max_digits=8,
+        decimal_places=4,
+        null=True,
+        blank=True,
+    )
+
+    glucose_units = models.CharField(
+        verbose_name="Blood Glucose Units",
+        max_length=15,
+        choices=(
+            (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
+            (MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER),
+        ),
+        null=True,
+        blank=True,
+    )
+
+    glucose_fasting = models.CharField(
+        verbose_name="Was this a fasting or random blood glucose?",
+        max_length=25,
+        choices=FASTING_CHOICES,
         null=True,
         blank=True,
     )

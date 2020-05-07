@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 from edc_form_label.form_label_modeladmin_mixin import FormLabelModelAdminMixin
 from edc_model_admin import SimpleHistoryAdmin
 
@@ -16,8 +17,8 @@ from .modeladmin import CrfModelAdminMixin
 class BiomedicalFollowupAdmin(
     CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryAdmin,
 ):
-    additional_instructions = (
-        "Complete for data recorded when patient last attended the clinic "
+    additional_instructions = mark_safe(
+        "<span style='color:#ff8000'>Complete for data as of the patient's last attended clinic visit</span>"
     )
 
     form = BiomedicalFollowupForm

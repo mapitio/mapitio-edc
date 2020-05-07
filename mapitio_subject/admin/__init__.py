@@ -3,6 +3,8 @@ from .biomedical_history_admin import BiomedicalHistoryAdmin
 from .complications_admin import ComplicationsAdmin
 from .death_report_admin import DeathReportAdmin
 from .follow_up_admin import FollowUpAdmin
+from .followup_indicators_admin import FollowupIndicatorsAdmin
+from .hiv_followup_admin import HivFollowupAdmin
 from .hiv_history_admin import HivHistoryAdmin
 from .indicators_admin import IndicatorsAdmin
 from .investigations_admin import InvestigationsAdmin

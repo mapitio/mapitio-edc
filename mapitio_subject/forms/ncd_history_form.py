@@ -62,7 +62,7 @@ class NcdFormValidator(FormValidator):
         self.applicable_if(
             YES, field="diabetic", field_applicable="diabetes_dx_date_estimated"
         )
-        self.m2m_applicable_if(YES, field="diabetic", m2m_field="diabetes_rx")
+        self.m2m_required_if(YES, field="diabetic", m2m_field="diabetes_rx")
         self.m2m_other_specify(
             OTHER, m2m_field="diabetes_rx", field_other="other_diabetes_rx"
         )
@@ -81,13 +81,13 @@ class NcdFormValidator(FormValidator):
         self.applicable_if(
             YES, field="hypertensive", field_applicable="hypertension_dx_date_estimated"
         )
-        self.m2m_applicable_if(YES, field="hypertensive", m2m_field="hypertension_rx")
+        self.m2m_required_if(YES, field="hypertensive", m2m_field="hypertension_rx")
         self.m2m_other_specify(
             OTHER, m2m_field="hypertension_rx", field_other="other_hypertension_rx"
         )
 
         # cholesterol
-        self.m2m_applicable_if(
+        self.m2m_required_if(
             YES, field="takes_cholesterol_rx", m2m_field="cholesterol_rx"
         )
         self.m2m_other_specify(
