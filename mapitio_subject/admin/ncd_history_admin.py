@@ -46,16 +46,16 @@ class NcdHistoryAdmin(CrfModelAdminMixin, SimpleHistoryAdmin):
             },
         ),
         (
-            "Other",
+            "Cholesterol",
             {
                 "fields": (
-                    "smoking_status",
                     "takes_cholesterol_rx",
                     "cholesterol_rx",
                     "other_cholesterol_rx",
                 ),
             },
         ),
+        ("Other", {"fields": ("smoking_status",)},),
         comment_fieldset_tuple,
         audit_fieldset_tuple,
     )

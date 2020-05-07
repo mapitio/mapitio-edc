@@ -2,7 +2,9 @@ from .biomedical_followup import BiomedicalFollowup
 from .biomedical_history import BiomedicalHistory
 from .complications import Complications
 from .follow_up import FollowUp
+from .followup_indicators import FollowupIndicators
 from .hiv_history import HivHistory
+from .hiv_followup import HivFollowup
 from .indicators import Indicators
 from .investigations import Investigations
 from .ncd_followup import NcdFollowup

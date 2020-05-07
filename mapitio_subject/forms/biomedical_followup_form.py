@@ -16,9 +16,7 @@ class BiomedicalFollowupFormValidator(BiomedicalFormValidator):
         # confirm biomedical_history is complete
         try:
             BiomedicalHistory.objects.get(
-                subject_identifier=self.cleaned_data.get(
-                    "subject_visit"
-                ).subject_identifier
+                subject_visit=self.cleaned_data.get("subject_visit")
             )
         except ObjectDoesNotExist:
             raise forms.ValidationError(

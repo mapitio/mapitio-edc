@@ -41,7 +41,9 @@ class NcdHistory(CrfModelMixin, NcdModelMixin, edc_models.BaseUuidModel):
     )
 
     cholesterol_rx = models.ManyToManyField(
-        CholesterolMedications, verbose_name="If YES, blood cholesterol medications",
+        CholesterolMedications,
+        verbose_name="If YES, blood cholesterol medications",
+        blank=True,
     )
 
     other_cholesterol_rx = edc_models.OtherCharField(null=True, blank=True)
