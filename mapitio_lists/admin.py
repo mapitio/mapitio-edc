@@ -1,5 +1,6 @@
 from django.contrib import admin
 from edc_list_data.admin import ListModelAdminMixin
+from import_export.admin import ExportActionMixin
 
 from .admin_site import mapitio_lists_admin
 from .models import (
@@ -18,55 +19,61 @@ from .models import (
 
 
 @admin.register(EcgFindings, site=mapitio_lists_admin)
-class EcgFindingsAdmin(ListModelAdminMixin, admin.ModelAdmin):
+class EcgFindingsAdmin(ListModelAdminMixin, ExportActionMixin, admin.ModelAdmin):
     pass
 
 
 @admin.register(EchoFindings, site=mapitio_lists_admin)
-class EchoFindingsAdmin(ListModelAdminMixin, admin.ModelAdmin):
+class EchoFindingsAdmin(ListModelAdminMixin, ExportActionMixin, admin.ModelAdmin):
     pass
 
 
 @admin.register(Diagnoses, site=mapitio_lists_admin)
-class DiagnosesAdmin(ListModelAdminMixin, admin.ModelAdmin):
+class DiagnosesAdmin(ListModelAdminMixin, ExportActionMixin, admin.ModelAdmin):
     pass
 
 
 @admin.register(CholesterolMedications, site=mapitio_lists_admin)
-class CholesterolMedicationsAdmin(ListModelAdminMixin, admin.ModelAdmin):
+class CholesterolMedicationsAdmin(
+    ListModelAdminMixin, ExportActionMixin, admin.ModelAdmin
+):
     pass
 
 
 @admin.register(ChestXrayFindings, site=mapitio_lists_admin)
-class ChestXrayFindingsAdmin(ListModelAdminMixin, admin.ModelAdmin):
+class ChestXrayFindingsAdmin(ListModelAdminMixin, ExportActionMixin, admin.ModelAdmin):
     pass
 
 
 @admin.register(Conditions, site=mapitio_lists_admin)
-class ConditionsAdmin(ListModelAdminMixin, admin.ModelAdmin):
+class ConditionsAdmin(ListModelAdminMixin, ExportActionMixin, admin.ModelAdmin):
     pass
 
 
 @admin.register(OffstudyReasons, site=mapitio_lists_admin)
-class OffstudyReasonsAdmin(ListModelAdminMixin, admin.ModelAdmin):
+class OffstudyReasonsAdmin(ListModelAdminMixin, ExportActionMixin, admin.ModelAdmin):
     pass
 
 
 @admin.register(HypertensionMedications, site=mapitio_lists_admin)
-class HypertensionMedicationsAdmin(ListModelAdminMixin, admin.ModelAdmin):
+class HypertensionMedicationsAdmin(
+    ListModelAdminMixin, ExportActionMixin, admin.ModelAdmin
+):
     pass
 
 
 @admin.register(ArvRegimens, site=mapitio_lists_admin)
-class ArvRegimensAdmin(ListModelAdminMixin, admin.ModelAdmin):
+class ArvRegimensAdmin(ListModelAdminMixin, ExportActionMixin, admin.ModelAdmin):
     pass
 
 
 @admin.register(VisitReasons, site=mapitio_lists_admin)
-class VisitReasonsAdmin(ListModelAdminMixin, admin.ModelAdmin):
+class VisitReasonsAdmin(ListModelAdminMixin, ExportActionMixin, admin.ModelAdmin):
     pass
 
 
 @admin.register(DiabetesMedications, site=mapitio_lists_admin)
-class DiabetesMedicationsAdmin(ListModelAdminMixin, admin.ModelAdmin):
+class DiabetesMedicationsAdmin(
+    ListModelAdminMixin, ExportActionMixin, admin.ModelAdmin
+):
     pass
