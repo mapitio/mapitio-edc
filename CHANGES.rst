@@ -1,6 +1,6 @@
 Changes
 
-0.1.17
+0.1.18
 ------
 - upgrade to edc==0.1.26
 
