@@ -10,7 +10,7 @@ from edc_constants.choices import GENDER
 from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_identifier.subject_identifier import SubjectIdentifier as BaseSubjectIdentifier
-from edc_model.models import BaseUuidModel
+from edc_model import models as edc_models
 from edc_model.models import HistoricalRecords
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
@@ -29,6 +29,9 @@ class SubjectIdentifier(BaseSubjectIdentifier):
 
 
 class SubjectConsentManager(SearchSlugManager, models.Manager):
+
+    use_in_migrations = True
+
     def get_by_natural_key(self, subject_identifier, version):
         return self.get(subject_identifier=subject_identifier, version=version)
 
@@ -46,7 +49,7 @@ class SubjectConsent(
     CitizenFieldsMixin,
     VulnerabilityFieldsMixin,
     SearchSlugModelMixin,
-    BaseUuidModel,
+    edc_models.BaseUuidModel,
 ):
     """ A model completed by the user that captures the ICF.
     """
@@ -107,7 +110,10 @@ class SubjectConsent(
         super().save(*args, **kwargs)
 
     def natural_key(self):
-        return (self.subject_identifier, self.version)
+        return (
+            self.subject_identifier,
+            self.version,
+        )
 
     def get_subject_screening(self):
         """Returns the subject screening model instance.
@@ -124,7 +130,7 @@ class SubjectConsent(
         """
         return "subject_identifier"
 
-    class Meta(ConsentModelMixin.Meta):
+    class Meta(ConsentModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         unique_together = (
             ("subject_identifier", "version"),
             ("subject_identifier", "screening_identifier"),

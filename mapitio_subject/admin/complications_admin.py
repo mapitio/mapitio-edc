@@ -4,6 +4,7 @@ from edc_form_label.form_label_modeladmin_mixin import FormLabelModelAdminMixin
 from edc_model_admin import SimpleHistoryAdmin
 
 from ..admin_site import mapitio_subject_admin
+from ..exim_resources import ComplicationsResource
 from ..forms import ComplicationsForm
 from ..models import Complications
 from .fieldsets import comment_fieldset_tuple
@@ -12,9 +13,11 @@ from .modeladmin import CrfModelAdminMixin
 
 @admin.register(Complications, site=mapitio_subject_admin)
 class ComplicationsAdmin(
-    CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryAdmin
+    CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryAdmin,
 ):
     form = ComplicationsForm
+
+    resource_class = ComplicationsResource
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),

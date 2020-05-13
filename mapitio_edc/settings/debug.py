@@ -1,3 +1,6 @@
+import os
+import sys
+
 from multisite import SiteID
 
 from .defaults import *  # noqa
@@ -18,3 +21,6 @@ if not os.path.exists(ETC_DIR):
 if os.path.exists(BASE_DIR) and not os.path.exists(KEY_PATH):
     os.makedirs(KEY_PATH)
     AUTO_CREATE_KEYS = True
+
+if "--notebook" in sys.argv:
+    os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"

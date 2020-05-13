@@ -7,6 +7,7 @@ from django.views.generic.base import RedirectView
 from edc_action_item.admin_site import edc_action_item_admin
 from edc_adverse_event.admin_site import edc_adverse_event_admin
 from edc_appointment.admin_site import edc_appointment_admin
+from edc_crf.admin_site import edc_crf_admin
 from edc_dashboard.views import AdministrationView
 from edc_data_manager.admin_site import edc_data_manager_admin
 from edc_export.admin_site import edc_export_admin
@@ -52,6 +53,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("admin/", edc_appointment_admin.urls),
     path("admin/", edc_adverse_event_admin.urls),
+    path("admin/", edc_crf_admin.urls),
     path("admin/", edc_randomization_admin.urls),
     path("admin/", mapitio_consent_admin.urls),
     path("admin/", mapitio_subject_admin.urls),
@@ -91,6 +93,7 @@ urlpatterns = [
     path("edc_adverse_event/", include("edc_adverse_event.urls")),
     path("edc_appointment/", include("edc_appointment.urls")),
     path("edc_action_item/", include("edc_action_item.urls")),
+    path("edc_crf/", include("edc_crf.urls")),
     path("edc_randomization/", include("edc_randomization.urls")),
     path("edc_dashboard/", include("edc_dashboard.urls")),
     path("edc_consent/", include("edc_consent.urls")),

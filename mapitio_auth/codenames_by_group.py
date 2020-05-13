@@ -4,6 +4,7 @@ from edc_auth import (
     AUDITOR,
     CLINIC,
     DATA_MANAGER,
+    EXPORT,
     PII,
     PII_VIEW,
     SCREENING,
@@ -16,6 +17,7 @@ from edc_auth import (
 from .codenames import (
     auditor,
     clinic,
+    export,
     pii,
     pii_view,
     screening,
@@ -30,6 +32,7 @@ def get_codenames_by_group():
     codenames_by_group[AE_REVIEW] = []
     codenames_by_group[AUDITOR] = auditor
     codenames_by_group[CLINIC] = clinic
+    codenames_by_group[EXPORT] = export
     codenames_by_group[PII] = pii
     codenames_by_group[PII_VIEW] = pii_view
     codenames_by_group[SCREENING] = screening

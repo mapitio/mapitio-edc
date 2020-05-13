@@ -3,5 +3,5 @@ from edc_adverse_event.model_mixins import DeathReportTmgModelMixin
 
 
 class DeathReportTmg(DeathReportTmgModelMixin, BaseUuidModel):
-    class Meta(DeathReportTmgModelMixin.Meta):
+    class Meta(DeathReportTmgModelMixin.Meta, BaseUuidModel.Meta):
         pass

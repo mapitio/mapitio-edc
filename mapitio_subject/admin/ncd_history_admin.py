@@ -4,6 +4,7 @@ from edc_model_admin import SimpleHistoryAdmin
 from mapitio_subject.admin.fieldsets import comment_fieldset_tuple
 
 from ..admin_site import mapitio_subject_admin
+from ..exim_resources import NcdHistoryResource
 from ..forms import NcdHistoryForm
 from ..models import NcdHistory
 from .modeladmin import CrfModelAdminMixin
@@ -16,6 +17,8 @@ class NcdHistoryAdmin(CrfModelAdminMixin, SimpleHistoryAdmin):
     )
 
     form = NcdHistoryForm
+
+    resource_class = NcdHistoryResource
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),

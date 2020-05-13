@@ -53,6 +53,6 @@ class EndOfStudy(
         default=NOT_APPLICABLE,
     )
 
-    class Meta(OffScheduleModelMixin.Meta):
+    class Meta(OffScheduleModelMixin.Meta, BaseUuidModel.Meta):
         verbose_name = "End of Study"
         verbose_name_plural = "End of Study"

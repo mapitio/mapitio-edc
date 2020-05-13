@@ -8,15 +8,21 @@ from django_audit_fields.admin import audit_fieldset_tuple
 from edc_dashboard.url_names import url_names
 from edc_model_admin import SimpleHistoryAdmin
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
+from import_export.admin import ExportActionMixin
 
 from ..admin_site import mapitio_screening_admin
+from ..exim_resources import SubjectScreeningResource
 from ..forms import SubjectScreeningForm
 from ..models import SubjectScreening
 
 
 @admin.register(SubjectScreening, site=mapitio_screening_admin)
-class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
+class SubjectScreeningAdmin(
+    ModelAdminSubjectDashboardMixin, ExportActionMixin, SimpleHistoryAdmin
+):
     form = SubjectScreeningForm
+
+    resource_class = SubjectScreeningResource
 
     post_url_on_delete_name = "screening_listboard_url"
     subject_listboard_url_name = "screening_listboard_url"

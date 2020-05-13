@@ -7,7 +7,7 @@ from edc_identifier.model_mixins import (
     TrackingModelMixin,
     NonUniqueSubjectIdentifierFieldMixin,
 )
-from edc_model.models.base_uuid_model import BaseUuidModel
+from edc_model.models import BaseUuidModel
 from edc_sites.models import SiteModelMixin, CurrentSiteManager
 from edc_utils.date import get_utcnow
 
@@ -50,7 +50,7 @@ class UnblindingReview(
     def natural_key(self):
         return (self.action_identifier,)
 
-    class Meta:
+    class Meta(BaseUuidModel.Meta):
         verbose_name = "Unblinding Review"
         verbose_name_plural = "Unblinding Reviews"
         indexes = [

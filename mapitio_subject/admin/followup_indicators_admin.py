@@ -6,6 +6,7 @@ from edc_model_admin import SimpleHistoryAdmin
 from mapitio_subject.admin.fieldsets import comment_fieldset_tuple
 
 from ..admin_site import mapitio_subject_admin
+from ..exim_resources import FollowupIndicatorsResource
 from ..forms import FollowupIndicatorsForm
 from ..models import FollowupIndicators
 from .modeladmin import CrfModelAdminMixin
@@ -21,6 +22,8 @@ class FollowupIndicatorsAdmin(
     )
 
     form = FollowupIndicatorsForm
+
+    resource_class = FollowupIndicatorsResource
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),

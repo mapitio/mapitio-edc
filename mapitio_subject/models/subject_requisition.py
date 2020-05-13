@@ -4,5 +4,5 @@ from edc_reference.model_mixins import ReferenceModelMixin
 
 
 class SubjectRequisition(RequisitionModelMixin, ReferenceModelMixin, BaseUuidModel):
-    class Meta(RequisitionModelMixin.Meta):
+    class Meta(BaseUuidModel.Meta, RequisitionModelMixin.Meta):
         pass

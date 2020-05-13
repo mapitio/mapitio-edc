@@ -1,7 +1,10 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
+from edc_crf import CrfModelResource
 from edc_form_label.form_label_modeladmin_mixin import FormLabelModelAdminMixin
 from edc_model_admin import SimpleHistoryAdmin
+from import_export.admin import ExportActionModelAdmin
+from import_export.fields import Field
 from mapitio_subject.admin.fieldsets import comment_fieldset_tuple
 
 from ..admin_site import mapitio_subject_admin
@@ -10,11 +13,28 @@ from ..models import Investigations
 from .modeladmin import CrfModelAdminMixin
 
 
+class InvestigationsResource(CrfModelResource):
+    chest_xray_findings_names = Field()
+
+    def dehydrate_chest_xray_findings_names(self, obj):
+        names = [obj.name for obj in obj.chest_xray_findings.all()]
+        names.sort()
+        return ",".join(names)
+
+    class Meta(CrfModelResource.Meta):
+        model = Investigations
+
+
 @admin.register(Investigations, site=mapitio_subject_admin)
 class InvestigationsAdmin(
-    CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryAdmin
+    CrfModelAdminMixin,
+    FormLabelModelAdminMixin,
+    ExportActionModelAdmin,
+    SimpleHistoryAdmin,
 ):
     form = InvestigationsForm
+
+    resource_class = InvestigationsResource
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),

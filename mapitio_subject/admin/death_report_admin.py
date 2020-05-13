@@ -5,6 +5,7 @@ from edc_model_admin import SimpleHistoryAdmin
 from mapitio_subject.admin.fieldsets import comment_fieldset_tuple
 
 from ..admin_site import mapitio_subject_admin
+from ..exim_resources import DeathReportResource
 from ..forms import DeathReportForm
 from ..models import DeathReport
 from .modeladmin import CrfModelAdminMixin
@@ -15,6 +16,8 @@ class DeathReportAdmin(
     CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryAdmin
 ):
     form = DeathReportForm
+
+    resource_class = DeathReportResource
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),

@@ -9,5 +9,5 @@ class DeathReport(InteDeathReportModelMixin, DeathReportModelMixin, BaseUuidMode
 
     study_day = models.IntegerField(default=0, editable=False, help_text="not used")
 
-    class Meta(DeathReportModelMixin.Meta):
+    class Meta(DeathReportModelMixin.Meta, BaseUuidModel.Meta):
         pass
