@@ -6,7 +6,7 @@ from edc_identifier.model_mixins import (
     TrackingModelMixin,
     NonUniqueSubjectIdentifierFieldMixin,
 )
-from edc_model.models.base_uuid_model import BaseUuidModel
+from edc_model.models import BaseUuidModel
 from edc_sites.models import SiteModelMixin
 from edc_utils.date import get_utcnow
 
@@ -67,7 +67,7 @@ class LossToFollowup(
         blank=False,
     )
 
-    class Meta:
+    class Meta(BaseUuidModel.Meta):
         verbose_name = "Loss to Follow Up"
         verbose_name = "Loss to Follow Ups"
         indexes = [

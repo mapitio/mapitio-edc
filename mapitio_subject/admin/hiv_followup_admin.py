@@ -5,6 +5,7 @@ from edc_model_admin import SimpleHistoryAdmin
 from mapitio_subject.admin.fieldsets import comment_fieldset_tuple
 
 from ..admin_site import mapitio_subject_admin
+from ..exim_resources import HivHistoryResource
 from ..forms import HivFollowupForm
 from ..models import HivFollowup
 from .modeladmin import CrfModelAdminMixin
@@ -17,6 +18,10 @@ class HivFollowupAdmin(CrfModelAdminMixin, SimpleHistoryAdmin):
     )
 
     form = HivFollowupForm
+
+    autocomplete_fields = ["arv_regimen"]
+
+    resource_class = HivHistoryResource
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
@@ -38,7 +43,6 @@ class HivFollowupAdmin(CrfModelAdminMixin, SimpleHistoryAdmin):
 
     radio_fields = {
         "arv_modification": admin.VERTICAL,
-        "arv_regimen": admin.VERTICAL,
         "dtg_switched": admin.VERTICAL,
         "crf_status": admin.VERTICAL,
     }

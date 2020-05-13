@@ -7,7 +7,7 @@ from ..choices import NOT_IN_CARE_REASONS
 from .model_mixins import CrfModelMixin
 
 
-class FollowUp(CrfModelMixin, edc_models.BaseUuidModel):
+class Followup(CrfModelMixin, edc_models.BaseUuidModel):
 
     alive = models.CharField(
         verbose_name="Is the patient known to be alive?", max_length=25, choices=YES_NO,
@@ -43,5 +43,5 @@ class FollowUp(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name = "Follow Up"
-        verbose_name_plural = "Follow Ups"
+        verbose_name = "Followup"
+        verbose_name_plural = "Followups"

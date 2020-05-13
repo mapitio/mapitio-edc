@@ -150,7 +150,7 @@ class ProtocolDeviationViolation(
     def natural_key(self):
         return (self.action_identifier,)
 
-    class Meta:
+    class Meta(BaseUuidModel.Meta):
         verbose_name = "Protocol Deviation/Violation"
         verbose_name_plural = "Protocol Deviations/Violations"
         indexes = [

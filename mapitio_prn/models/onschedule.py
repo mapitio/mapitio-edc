@@ -13,5 +13,5 @@ class OnSchedule(OnScheduleModelMixin, BaseUuidModel):
 
     history = HistoricalRecords()
 
-    class Meta(OnScheduleModelMixin.Meta):
+    class Meta(OnScheduleModelMixin.Meta, BaseUuidModel.Meta):
         pass

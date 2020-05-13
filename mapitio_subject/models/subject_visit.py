@@ -70,5 +70,5 @@ class SubjectVisit(
             subject_identifier=self.subject_identifier
         ).hospital_identifier
 
-    class Meta(VisitModelMixin.Meta):
+    class Meta(BaseUuidModel.Meta, VisitModelMixin.Meta):
         pass

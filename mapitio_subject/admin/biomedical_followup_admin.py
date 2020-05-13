@@ -4,6 +4,7 @@ from edc_form_label.form_label_modeladmin_mixin import FormLabelModelAdminMixin
 from edc_model_admin import SimpleHistoryAdmin
 
 from ..admin_site import mapitio_subject_admin
+from ..exim_resources import BiomedicalFollowupResource
 from ..forms import BiomedicalFollowupForm
 from ..models import BiomedicalFollowup
 from .fieldsets import (
@@ -22,6 +23,8 @@ class BiomedicalFollowupAdmin(
     )
 
     form = BiomedicalFollowupForm
+
+    resource_class = BiomedicalFollowupResource
 
     fieldsets = biomedical_fieldsets
 

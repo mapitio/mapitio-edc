@@ -5,6 +5,7 @@ from edc_model_admin import SimpleHistoryAdmin
 from mapitio_subject.admin.fieldsets import comment_fieldset_tuple
 
 from ..admin_site import mapitio_subject_admin
+from ..exim_resources import NcdFollowupResource
 from ..forms import NcdFollowupForm
 from ..models import NcdFollowup
 from .modeladmin import CrfModelAdminMixin
@@ -13,6 +14,8 @@ from .modeladmin import CrfModelAdminMixin
 @admin.register(NcdFollowup, site=mapitio_subject_admin)
 class NcdFollowupAdmin(CrfModelAdminMixin, SimpleHistoryAdmin):
     form = NcdFollowupForm
+
+    resource_class = NcdFollowupResource
 
     additional_instructions = mark_safe(
         "<span style='color:#ff8000'>Complete for data as of the patient's last attended clinic visit</span>"

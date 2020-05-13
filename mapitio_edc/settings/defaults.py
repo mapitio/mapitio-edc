@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "import_export",
     "multisite",
     "django_crypto_fields.apps.AppConfig",
     "django_revision.apps.AppConfig",
@@ -82,6 +83,7 @@ INSTALLED_APPS = [
     "edc_lab.apps.AppConfig",
     "edc_visit_schedule.apps.AppConfig",
     "edc_dashboard.apps.AppConfig",
+    "edc_crf.apps.AppConfig",
     "edc_data_manager.apps.AppConfig",
     "edc_export.apps.AppConfig",
     "edc_fieldsets.apps.AppConfig",
@@ -91,6 +93,7 @@ INSTALLED_APPS = [
     "edc_list_data.apps.AppConfig",
     "edc_locator.apps.AppConfig",
     "edc_metadata_rules.apps.AppConfig",
+    "edc_model.apps.AppConfig",
     "edc_model_admin.apps.AppConfig",
     "edc_navbar.apps.AppConfig",
     "edc_notification.apps.AppConfig",
@@ -411,6 +414,10 @@ SIMPLE_HISTORY_REVERT_ENABLED = False
 
 # django-multisite
 CACHE_MULTISITE_KEY_PREFIX = APP_NAME
+
+# django-import-export
+IMPORT_EXPORT_EXPORT_PERMISSION_CODE = "export"
+IMPORT_EXPORT_IMPORT_PERMISSION_CODE = "import"
 
 # static
 if env("AWS_ENABLED"):

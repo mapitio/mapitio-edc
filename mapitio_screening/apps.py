@@ -1,4 +1,5 @@
 from django.apps import AppConfig as DjangoApponfig
+from django.db.models.signals import post_migrate
 
 
 class AppConfig(DjangoApponfig):

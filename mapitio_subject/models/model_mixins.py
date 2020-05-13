@@ -9,7 +9,7 @@ from edc_constants.choices import (
     YES_NO_NOT_DONE,
 )
 from edc_constants.constants import INCOMPLETE, NOT_APPLICABLE, NOT_DONE
-from edc_crf.model_mixins import CrfModelMixin as BaseCrfModelMixin
+from edc_crf.model_mixins import CrfModelMixin as BaseCrfModelMixin, CrfStatusModelMixin
 from edc_model import models as edc_models
 from edc_model.validators import date_is_past
 from edc_model.validators.date import date_is_not_now
@@ -27,20 +27,10 @@ from mapitio_lists.models import (
     HypertensionMedications,
 )
 
-from ..choices import CRF_STATUS, FASTING_CHOICES
+from ..choices import FASTING_CHOICES
 
 
-class CrfModelMixin(BaseCrfModelMixin):
-    crf_status = models.CharField(
-        verbose_name="CRF status",
-        max_length=25,
-        choices=CRF_STATUS,
-        default=INCOMPLETE,
-        help_text="If some data is still pending, flag this CRF as incomplete",
-    )
-
-    comments = models.TextField(null=True, blank=True)
-
+class CrfModelMixin(CrfStatusModelMixin, BaseCrfModelMixin):
     class Meta(BaseCrfModelMixin.Meta):
         abstract = True
 

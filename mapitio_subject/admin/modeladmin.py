@@ -3,13 +3,14 @@ from edc_model_admin.dashboard import (
     ModelAdminSubjectDashboardMixin,
     ModelAdminCrfDashboardMixin,
 )
+from import_export.admin import ExportActionMixin
 
 
 class ModelAdminMixin(ModelAdminSubjectDashboardMixin):
     pass
 
 
-class CrfModelAdminMixin(ModelAdminCrfDashboardMixin):
+class CrfModelAdminMixin(ModelAdminCrfDashboardMixin, ExportActionMixin):
     def get_list_display(self, request):
         super().get_list_display(request)
         if "crf_status" not in self.list_display:

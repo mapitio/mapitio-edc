@@ -9,7 +9,7 @@ from edc_constants.constants import ABNORMAL
 from edc_identifier.managers import SubjectIdentifierManager
 from edc_identifier.model_mixins import TrackingModelMixin
 from edc_identifier.model_mixins import UniqueSubjectIdentifierModelMixin
-from edc_model.models import BaseUuidModel
+from edc_model import models as edc_models
 from edc_registration.models import RegisteredSubject
 from edc_sites.models import SiteModelMixin
 from edc_utils import get_utcnow
@@ -26,7 +26,7 @@ class SubjectReconsent(
     SearchSlugModelMixin,
     ActionModelMixin,
     TrackingModelMixin,
-    BaseUuidModel,
+    edc_models.BaseUuidModel,
 ):
 
     """ A model completed by the user that updates the consent
@@ -75,7 +75,10 @@ class SubjectReconsent(
         super().save(*args, **kwargs)
 
     def natural_key(self):
-        return (self.subject_identifier, self.version)
+        return (
+            self.subject_identifier,
+            self.version,
+        )
 
     def get_subject_consent(self, screening_identifier=None):
         """Returns the first subject consent model instance.
@@ -102,5 +105,5 @@ class SubjectReconsent(
         """
         return "subject_identifier"
 
-    class Meta:
+    class Meta(edc_models.BaseUuidModel.Meta):
         verbose_name = "Subject re-consent"

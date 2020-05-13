@@ -20,10 +20,6 @@ from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, MISSED_VISIT
 
 from .constants import DIABETES, HYPERTENSION
 
-CRF_STATUS = (
-    (INCOMPLETE, "Incomplete (some data pending)"),
-    (COMPLETE, "Complete"),
-)
 FASTING_CHOICES = (
     (FASTING, "Fasting"),
     (NON_FASTING, "Non-fasting"),

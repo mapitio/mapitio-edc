@@ -32,6 +32,10 @@ class SubjectScreeningModelError(Exception):
     pass
 
 
+class SubjectScreeningModelManager(models.Manager):
+    use_in_migrations = True
+
+
 class SubjectScreening(
     NonUniqueSubjectIdentifierModelMixin,
     MapitioAdditionalIdentifiersModelMixin,
@@ -42,6 +46,7 @@ class SubjectScreening(
     SiteModelMixin,
     edc_models.BaseUuidModel,
 ):
+
     screening_identifier = models.CharField(
         verbose_name="Enrollment ID",
         max_length=50,
@@ -80,14 +85,14 @@ class SubjectScreening(
         verbose_name="Is date of birth estimated?", null=True, blank=False
     )
 
-    confirm_hospital_identifier = models.CharField(
+    confirm_hospital_identifier = EncryptedCharField(
         verbose_name="Confirm HMS Identifier",
-        max_length=25,
+        null=True,
         help_text="Retype the Hindu Mandal Hospital Identifier",
     )
 
-    confirm_ctc_identifier = models.CharField(
-        verbose_name="Confirm CTC Identifier", max_length=25, null=True, blank=True,
+    confirm_ctc_identifier = EncryptedCharField(
+        verbose_name="Confirm CTC Identifier", null=True, blank=True,
     )
 
     clinic_registration_date = models.DateField(
@@ -130,7 +135,7 @@ class SubjectScreening(
 
     on_site = CurrentSiteManager()
 
-    objects = models.Manager()
+    objects = SubjectScreeningModelManager()
 
     def save(self, *args, **kwargs):
         """Screening Identifier is always allocated.

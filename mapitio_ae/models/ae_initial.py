@@ -9,5 +9,5 @@ class AeMetaModelMixin(models.Model):
 
 
 class AeInitial(AeInitialModelMixin, AeMetaModelMixin, BaseUuidModel):
-    class Meta(AeInitialModelMixin.Meta):
+    class Meta(AeInitialModelMixin.Meta, BaseUuidModel.Meta):
         pass
