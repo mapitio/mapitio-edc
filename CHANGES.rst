@@ -1,5 +1,9 @@
 Changes
 
+0.1.17
+------
+- upgrade to edc==0.1.26
+
 0.1.16
 ------
 - change ARV regimen to an autocomplete field from radio
